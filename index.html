@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiniela de Fútbol</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen pb-28">
+
+  <!-- Encabezado -->
+  <header class="bg-slate-800 border-b border-slate-700 py-4 px-4 sticky top-0 z-20 shadow-md">
+    <div class="max-w-md mx-auto flex items-center justify-between">
+      <div>
+        <h1 class="text-lg font-black tracking-wide text-emerald-400 uppercase">Quiniela MX</h1>
+        <p class="text-xs text-slate-400">Jornada Activa • $25 MXN por jugada</p>
+      </div>
+      <span class="bg-emerald-500/10 text-emerald-400 text-xs font-semibold px-2.5 py-1 rounded-full border border-emerald-500/20">
+        Activa
+      </span>
+    </div>
+  </header>
+
+  <main class="max-w-md mx-auto px-4 pt-4 space-y-4">
+
+    <!-- Datos del Participante -->
+    <section class="bg-slate-800 rounded-xl p-4 border border-slate-700 shadow-sm space-y-3">
+      <h2 class="text-sm font-semibold text-slate-300">Tus Datos</h2>
+      <div>
+        <label for="nombre" class="block text-xs text-slate-400 mb-1">Nombre o Apodo con el que juegas:</label>
+        <input 
+          type="text" 
+          id="nombre" 
+          placeholder="Ej. Carlos Mendoza" 
+          class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-emerald-500"
+          required
+        >
+      </div>
+    </section>
+
+    <!-- Lista de Partidos -->
+    <section class="space-y-3" id="contenedorPartidos">
+      <!-- Los partidos se inyectan con JavaScript -->
+    </section>
+
+  </main>
+
+  <!-- Barra Fija Inferior: Resumen y Botón de Envío -->
+  <footer class="fixed bottom-0 left-0 right-0 bg-slate-800/95 backdrop-blur border-t border-slate-700 p-4 z-30">
+    <div class="max-w-md mx-auto flex items-center justify-between gap-4">
+      <div>
+        <p class="text-xs text-slate-400">Total a pagar:</p>
+        <p class="text-xl font-black text-emerald-400" id="totalPagar">$0 MXN</p>
+        <p class="text-[10px] text-slate-400" id="combinaciones">0 combinaciones</p>
+      </div>
+      <button 
+        type="button" 
+        onclick="enviarAWhatsApp()" 
+        class="bg-emerald-500 hover:bg-emerald-400 active:scale-95 transition-all text-slate-950 font-bold px-5 py-3 rounded-xl text-sm flex items-center gap-2 shadow-lg shadow-emerald-500/20"
+      >
+        <span>Enviar Pronóstico</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/>
+        </svg>
+      </button>
+    </div>
+  </footer>
+
+  <script>
+    // Configuración general
+    const PRECIO_BASE = 25; // Costo por quiniela en MXN
+    const NUMERO_WHATSAPP = "521XXXXXXXXXX"; // Aquí cambiarás las X por tu número cuando lo tengas
+
+    // Lista de partidos de la jornada
+    const partidos = [
+      { id: 1, local: "América", visita: "Chivas" },
+      { id: 2, local: "Cruz Azul", visita: "Pumas" },
+      { id: 3, local: "Tigres", visita: "Monterrey" },
+      { id: 4, local: "Toluca", visita: "León" },
+      { id: 5, local: "Pachuca", visita: "Atlas" },
+      { id: 6, local: "Santos", visita: "Necaxa" },
+      { id: 7, local: "Tijuana", visita: "Mazatlán" },
+      { id: 8, local: "Querétaro", visita: "Juárez" },
+      { id: 9, local: "Atl. San Luis", visita: "Puebla" }
+    ];
+
+    // Guarda las elecciones del usuario: { 1: ['L', 'E'], 2: ['V'], ... }
+    const pronosticos = {};
+
+    // Renderizar los partidos en pantalla
+    const contenedor = document.getElementById('contenedorPartidos');
+    partidos.forEach(p => {
+      pronosticos[p.id] = [];
+
+      const card = document.createElement('div');
+      card.className = "bg-slate-800 rounded-xl p-3 border border-slate-700/80 space-y-2";
+      card.innerHTML = `
+        <div class="flex items-center justify-between text-xs text-slate-400 border-b border-slate-700/50 pb-1.5">
+          <span class="font-medium text-slate-300">Partido ${p.id}</span>
+          <span class="text-[11px] bg-slate-700 px-2 py-0.5 rounded text-slate-300">L - E - V</span>
+        </div>
+        <div class="grid grid-cols-3 gap-2 items-center text-center">
+          <span class="text-xs font-semibold text-white truncate text-right">${p.local}</span>
+          <span class="text-[10px] text-slate-500 font-bold uppercase">vs</span>
+          <span class="text-xs font-semibold text-white truncate text-left">${p.visita}</span>
+        </div>
+        <div class="grid grid-cols-3 gap-2 pt-1">
+          <button type="button" onclick="marcar(${p.id}, 'L', this)" class="btn-opcion py-2 rounded-lg text-xs font-bold bg-slate-900 border border-slate-700 text-slate-300 active:scale-95 transition-all">L</button>
+          <button type="button" onclick="marcar(${p.id}, 'E', this)" class="btn-opcion py-2 rounded-lg text-xs font-bold bg-slate-900 border border-slate-700 text-slate-300 active:scale-95 transition-all">E</button>
+          <button type="button" onclick="marcar(${p.id}, 'V', this)" class="btn-opcion py-2 rounded-lg text-xs font-bold bg-slate-900 border border-slate-700 text-slate-300 active:scale-95 transition-all">V</button>
+        </div>
+      `;
+      contenedor.appendChild(card);
+    });
+
+    // Control de selección (permite simples, dobles y triples)
+    function marcar(partidoId, opcion, elemento) {
+      const index = pronosticos[partidoId].indexOf(opcion);
+      if (index > -1) {
+        pronosticos[partidoId].splice(index, 1);
+        elemento.classList.remove('bg-emerald-500', 'text-slate-950', 'border-emerald-400');
+        elemento.classList.add('bg-slate-900', 'text-slate-300', 'border-slate-700');
+      } else {
+        pronosticos[partidoId].push(opcion);
+        elemento.classList.remove('bg-slate-900', 'text-slate-300', 'border-slate-700');
+        elemento.classList.add('bg-emerald-500', 'text-slate-950', 'border-emerald-400');
+      }
+      calcularTotales();
+    }
+
+    // Calcula costo total multiplicando combinaciones (dobles = x2, triples = x3)
+    function calcularTotales() {
+      let combinaciones = 1;
+      let todosCompletos = true;
+
+      for (let p of partidos) {
+        const seleccionados = pronosticos[p.id].length;
+        if (seleccionados === 0) {
+          todosCompletos = false;
+        } else {
+          combinaciones *= seleccionados;
+        }
+      }
+
+      if (!todosCompletos) {
+        document.getElementById('totalPagar').textContent = "$0 MXN";
+        document.getElementById('combinaciones').textContent = "Selecciona al menos 1 resultado por partido";
+        return 0;
+      }
+
+      const total = combinaciones * PRECIO_BASE;
+      document.getElementById('totalPagar').textContent = `$${total.toLocaleString('es-MX')} MXN`;
+      document.getElementById('combinaciones').textContent = `${combinaciones} quiniela(s) en juego`;
+      return total;
+    }
+
+    // Validación y generación de URL de WhatsApp
+    function enviarAWhatsApp() {
+      const nombre = document.getElementById('nombre').value.trim();
+      if (!nombre) {
+        alert("Por favor escribe tu nombre o apodo antes de enviar.");
+        return;
+      }
+
+      // Validar que todos los partidos tengan al menos una selección
+      for (let p of partidos) {
+        if (pronosticos[p.id].length === 0) {
+          alert(`Falta seleccionar el resultado para el Partido ${p.id}: ${p.local} vs ${p.visita}`);
+          return;
+        }
+      }
+
+      // Generar Folio aleatorio
+      const folio = "Q-" + Math.floor(1000 + Math.random() * 9000);
+      
+      // Calcular combinaciones y total
+      let combinaciones = 1;
+      partidos.forEach(p => { combinaciones *= pronosticos[p.id].length; });
+      const total = combinaciones * PRECIO_BASE;
+
+      // Construcción del mensaje
+      let texto = `*REGISTRO DE QUINIELA*\n`;
+      texto += `*Folio:* ${folio}\n`;
+      texto += `*Participante:* ${nombre}\n`;
+      texto += `*Total a pagar:* $${total} MXN (${combinaciones} quinielas)\n\n`;
+      texto += `*PRONÓSTICOS:*\n`;
+
+      partidos.forEach(p => {
+        const eleccion = pronosticos[p.id].sort().join('/');
+        texto += `• ${p.id}. ${p.local} vs ${p.visita} ➔ *[${eleccion}]*\n`;
+      });
+
+      texto += `\nEn seguida te envío mi comprobante de pago por transferencia.`;
+
+      // Redirigir a WhatsApp
+      const url = `https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(texto)}`;
+      window.open(url, '_blank');
+    }
+  </script>
+</body>
+</html>
