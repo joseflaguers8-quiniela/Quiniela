@@ -12,8 +12,8 @@
   <header class="bg-slate-800 border-b border-slate-700 py-4 px-4 sticky top-0 z-20 shadow-md">
     <div class="max-w-md mx-auto flex items-center justify-between">
       <div>
-        <h1 class="text-lg font-black tracking-wide text-emerald-400 uppercase">Quiniela MX</h1>
-        <p class="text-xs text-slate-400">Jornada Activa • $25 MXN c/u (Mínimo 2)</p>
+        <h1 class="text-lg font-black tracking-wide text-emerald-400 uppercase">Quiniela MX e Internacional</h1>
+        <p class="text-xs text-slate-400">12 Partidos • $25 MXN c/u (Mínimo 2)</p>
       </div>
       <span class="bg-emerald-500/10 text-emerald-400 text-xs font-semibold px-2.5 py-1 rounded-full border border-emerald-500/20">
         Activa
@@ -41,7 +41,7 @@
     <!-- Lista de Partidos -->
     <section class="space-y-3">
       <div class="flex items-center justify-between">
-        <h2 class="text-sm font-semibold text-slate-300">2. Llena tu jugada</h2>
+        <h2 class="text-sm font-semibold text-slate-300">2. Llena tu jugada (12 partidos)</h2>
         <span class="text-xs text-slate-400" id="costoActual">Costo: $0 MXN</span>
       </div>
       <div id="contenedorPartidos" class="space-y-3">
@@ -69,13 +69,13 @@
       </div>
       
       <div id="listaAgregadas" class="space-y-2">
-        <p class="text-xs text-slate-500 italic text-center py-3">Aún no has agregado ninguna quiniela. Llena tus opciones y presiona "Agregar".</p>
+        <p class="text-xs text-slate-500 italic text-center py-3">Aún no has agregado ninguna quiniela. Llena tus 12 partidos y presiona "Agregar".</p>
       </div>
     </section>
 
   </main>
 
-  <!-- Barra Fija Inferior: Resumen y Botón de Envío -->
+  <!-- Barra Fija Inferior -->
   <footer class="fixed bottom-0 left-0 right-0 bg-slate-800/95 backdrop-blur border-t border-slate-700 p-4 z-30">
     <div class="max-w-md mx-auto flex items-center justify-between gap-4">
       <div>
@@ -102,16 +102,59 @@
     const PRECIO_BASE = 25;
     const NUMERO_WHATSAPP = "521XXXXXXXXXX"; // Cambiar por tu número cuando lo tengas
 
+    // Catálogo de logos (Liga MX + Equipos Internacionales populares)
+    const LOGOS = {
+      // Liga MX
+      "América": "https://a.espncdn.com/i/teamlogos/soccer/500/227.png",
+      "Chivas": "https://a.espncdn.com/i/teamlogos/soccer/500/228.png",
+      "Cruz Azul": "https://a.espncdn.com/i/teamlogos/soccer/500/232.png",
+      "Pumas": "https://a.espncdn.com/i/teamlogos/soccer/500/233.png",
+      "Tigres": "https://a.espncdn.com/i/teamlogos/soccer/500/234.png",
+      "Monterrey": "https://a.espncdn.com/i/teamlogos/soccer/500/231.png",
+      "Toluca": "https://a.espncdn.com/i/teamlogos/soccer/500/235.png",
+      "León": "https://a.espncdn.com/i/teamlogos/soccer/500/236.png",
+      "Pachuca": "https://a.espncdn.com/i/teamlogos/soccer/500/230.png",
+      "Atlas": "https://a.espncdn.com/i/teamlogos/soccer/500/229.png",
+      "Santos": "https://a.espncdn.com/i/teamlogos/soccer/500/237.png",
+      "Necaxa": "https://a.espncdn.com/i/teamlogos/soccer/500/238.png",
+      "Tijuana": "https://a.espncdn.com/i/teamlogos/soccer/500/6146.png",
+      "Mazatlán": "https://a.espncdn.com/i/teamlogos/soccer/500/20349.png",
+      "Querétaro": "https://a.espncdn.com/i/teamlogos/soccer/500/240.png",
+      "Juárez": "https://a.espncdn.com/i/teamlogos/soccer/500/17851.png",
+      "Atl. San Luis": "https://a.espncdn.com/i/teamlogos/soccer/500/8412.png",
+      "Puebla": "https://a.espncdn.com/i/teamlogos/soccer/500/239.png",
+
+      // Internacionales / Europa
+      "Real Madrid": "https://a.espncdn.com/i/teamlogos/soccer/500/86.png",
+      "Barcelona": "https://a.espncdn.com/i/teamlogos/soccer/500/83.png",
+      "Atlético Madrid": "https://a.espncdn.com/i/teamlogos/soccer/500/1068.png",
+      "Manchester City": "https://a.espncdn.com/i/teamlogos/soccer/500/382.png",
+      "Liverpool": "https://a.espncdn.com/i/teamlogos/soccer/500/364.png",
+      "Arsenal": "https://a.espncdn.com/i/teamlogos/soccer/500/359.png",
+      "Chelsea": "https://a.espncdn.com/i/teamlogos/soccer/500/363.png",
+      "Bayern Múnich": "https://a.espncdn.com/i/teamlogos/soccer/500/132.png",
+      "Inter Milán": "https://a.espncdn.com/i/teamlogos/soccer/500/110.png",
+      "Juventus": "https://a.espncdn.com/i/teamlogos/soccer/500/111.png",
+      "PSG": "https://a.espncdn.com/i/teamlogos/soccer/500/160.png"
+    };
+
+    // 12 Partidos: 9 Liga MX + 3 Internacionales
     const partidos = [
-      { id: 1, local: "América", visita: "Chivas" },
-      { id: 2, local: "Cruz Azul", visita: "Pumas" },
-      { id: 3, local: "Tigres", visita: "Monterrey" },
-      { id: 4, local: "Toluca", visita: "León" },
-      { id: 5, local: "Pachuca", visita: "Atlas" },
-      { id: 6, local: "Santos", visita: "Necaxa" },
-      { id: 7, local: "Tijuana", visita: "Mazatlán" },
-      { id: 8, local: "Querétaro", visita: "Juárez" },
-      { id: 9, local: "Atl. San Luis", visita: "Puebla" }
+      // 9 de Liga MX
+      { id: 1, liga: "Liga MX", local: "América", visita: "Chivas" },
+      { id: 2, liga: "Liga MX", local: "Cruz Azul", visita: "Pumas" },
+      { id: 3, liga: "Liga MX", local: "Tigres", visita: "Monterrey" },
+      { id: 4, liga: "Liga MX", local: "Toluca", visita: "León" },
+      { id: 5, liga: "Liga MX", local: "Pachuca", visita: "Atlas" },
+      { id: 6, liga: "Liga MX", local: "Santos", visita: "Necaxa" },
+      { id: 7, liga: "Liga MX", local: "Tijuana", visita: "Mazatlán" },
+      { id: 8, liga: "Liga MX", local: "Querétaro", visita: "Juárez" },
+      { id: 9, liga: "Liga MX", local: "Atl. San Luis", visita: "Puebla" },
+      
+      // 3 Internacionales
+      { id: 10, liga: "España", local: "Real Madrid", visita: "Barcelona" },
+      { id: 11, liga: "Inglaterra", local: "Manchester City", visita: "Liverpool" },
+      { id: 12, liga: "Italia", local: "Inter Milán", visita: "Juventus" }
     ];
 
     let pronosticoActual = {};
@@ -122,17 +165,29 @@
       contenedor.innerHTML = "";
       partidos.forEach(p => {
         pronosticoActual[p.id] = [];
+        const logoLocal = LOGOS[p.local] || "https://placehold.co/40x40?text=L";
+        const logoVisita = LOGOS[p.visita] || "https://placehold.co/40x40?text=V";
+
         const card = document.createElement('div');
         card.className = "bg-slate-800 rounded-xl p-3 border border-slate-700/80 space-y-2";
         card.innerHTML = `
           <div class="flex items-center justify-between text-xs text-slate-400 border-b border-slate-700/50 pb-1.5">
-            <span class="font-medium text-slate-300">Partido ${p.id}</span>
+            <div class="flex items-center gap-1.5">
+              <span class="font-medium text-slate-300">Partido ${p.id}</span>
+              <span class="text-[10px] bg-emerald-500/10 text-emerald-400 px-1.5 py-0.5 rounded border border-emerald-500/20 font-semibold">${p.liga}</span>
+            </div>
             <span class="text-[11px] bg-slate-700 px-2 py-0.5 rounded text-slate-300">L - E - V</span>
           </div>
-          <div class="grid grid-cols-3 gap-2 items-center text-center">
-            <span class="text-xs font-semibold text-white truncate text-right">${p.local}</span>
-            <span class="text-[10px] text-slate-500 font-bold uppercase">vs</span>
-            <span class="text-xs font-semibold text-white truncate text-left">${p.visita}</span>
+          <div class="grid grid-cols-3 gap-2 items-center text-center py-1">
+            <div class="flex flex-col items-center justify-center gap-1">
+              <img src="${logoLocal}" alt="${p.local}" class="w-8 h-8 object-contain">
+              <span class="text-xs font-semibold text-white truncate max-w-full">${p.local}</span>
+            </div>
+            <span class="text-[11px] text-slate-500 font-extrabold uppercase">vs</span>
+            <div class="flex flex-col items-center justify-center gap-1">
+              <img src="${logoVisita}" alt="${p.visita}" class="w-8 h-8 object-contain">
+              <span class="text-xs font-semibold text-white truncate max-w-full">${p.visita}</span>
+            </div>
           </div>
           <div class="grid grid-cols-3 gap-2 pt-1" id="grupo-botones-${p.id}">
             <button type="button" onclick="marcar(${p.id}, 'L', this)" class="btn-opcion py-2 rounded-lg text-xs font-bold bg-slate-900 border border-slate-700 text-slate-300 active:scale-95 transition-all">L</button>
@@ -227,7 +282,7 @@
       const btnEnviar = document.getElementById('btnEnviarWhatsapp');
 
       if (listaQuinielas.length === 0) {
-        contenedorLista.innerHTML = `<p class="text-xs text-slate-500 italic text-center py-3">Aún no has agregado ninguna quiniela. Llena tus opciones y presiona "Agregar".</p>`;
+        contenedorLista.innerHTML = `<p class="text-xs text-slate-500 italic text-center py-3">Aún no has agregado ninguna quiniela. Llena tus 12 partidos y presiona "Agregar".</p>`;
         contador.textContent = "0 / 2 mín.";
         granTotalElement.textContent = "$0 MXN";
         resumenElement.textContent = "0 quinielas listas";
@@ -265,7 +320,6 @@
       granTotalElement.textContent = `$${totalPagar.toLocaleString('es-MX')} MXN`;
       resumenElement.textContent = `${totalQuinielas} quiniela(s) en juego`;
 
-      // Validar si cumple el mínimo de 2 quinielas
       if (listaQuinielas.length >= 2) {
         btnEnviar.disabled = false;
         btnEnviar.className = "bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold px-5 py-3 rounded-xl text-sm flex items-center gap-2 transition-all shadow-lg shadow-emerald-500/20 active:scale-95 cursor-pointer";
