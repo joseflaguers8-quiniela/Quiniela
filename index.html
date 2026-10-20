@@ -7,58 +7,57 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    /* Paleta idéntica al logotipo de La Tribuna */
+    /* Estilo Negro Carbón Deportivo */
     :root {
-      --tribuna-navy: #0b162c;
-      --tribuna-card: #132242;
-      --tribuna-card-sub: #080f20;
-      --tribuna-green: #10b981;
-      --tribuna-gold: #f59e0b;
-      --tribuna-gold-light: #fbbf24;
+      --bg-main: #090a0f;
+      --card-bg: #12141c;
+      --card-inner: #0b0d13;
+      --border-color: #1e2230;
+      --green-accent: #10b981;
+      --gold-accent: #f59e0b;
     }
 
     body {
-      background-color: var(--tribuna-navy);
-      background-image: radial-gradient(circle at 50% 0%, #172a54 0%, #0b162c 80%);
-      color: #f8fafc;
+      background-color: var(--bg-main);
+      color: #f1f5f9;
     }
 
-    /* Botones de pronóstico activos */
+    /* Botones de Selección Activos */
     .btn-pick.active-l {
       background: linear-gradient(135deg, #10b981, #059669) !important;
       color: #ffffff !important;
       border-color: #34d399 !important;
-      box-shadow: 0 0 14px rgba(16, 185, 129, 0.6);
+      box-shadow: 0 0 12px rgba(16, 185, 129, 0.5);
       font-weight: 900;
     }
     .btn-pick.active-e {
       background: linear-gradient(135deg, #f59e0b, #d97706) !important;
-      color: #0b162c !important;
+      color: #000000 !important;
       border-color: #fde047 !important;
-      box-shadow: 0 0 14px rgba(245, 158, 11, 0.6);
+      box-shadow: 0 0 12px rgba(245, 158, 11, 0.5);
       font-weight: 900;
     }
     .btn-pick.active-v {
       background: linear-gradient(135deg, #3b82f6, #1d4ed8) !important;
       color: #ffffff !important;
       border-color: #93c5fd !important;
-      box-shadow: 0 0 14px rgba(59, 130, 246, 0.6);
+      box-shadow: 0 0 12px rgba(59, 130, 246, 0.5);
       font-weight: 900;
     }
   </style>
 </head>
 <body class="min-h-screen pb-28 font-sans antialiased">
 
-  <!-- Header Centrado con Logo Grande y Visible -->
-  <header class="bg-[#0b162c]/95 backdrop-blur border-b-2 border-amber-500/40 pt-4 pb-3 px-4 sticky top-0 z-40 shadow-2xl">
+  <!-- Header Centrado con Logo Oficial -->
+  <header class="bg-[#0e1017] border-b border-[#232738] pt-4 pb-3 px-4 sticky top-0 z-40 shadow-2xl">
     <div class="max-w-md mx-auto flex flex-col items-center text-center">
       
-      <!-- Contenedor del Logo Destacado -->
+      <!-- Contenedor del Logo -->
       <div class="relative mb-2">
-        <div class="w-20 h-20 rounded-full p-1 bg-gradient-to-tr from-amber-500 via-emerald-400 to-amber-300 shadow-xl shadow-emerald-500/20 flex items-center justify-center overflow-hidden bg-[#0b162c]">
-          <img src="logo.png" alt="Quinielas La Tribuna" 
+        <div class="w-20 h-20 rounded-full p-1 bg-gradient-to-tr from-amber-500 via-emerald-400 to-amber-300 shadow-xl flex items-center justify-center overflow-hidden bg-[#090a0f]">
+          <img id="mainLogo" src="logo.jpg" alt="Quinielas La Tribuna" 
                class="w-full h-full object-cover rounded-full"
-               onerror="this.onerror=null; this.src='https://placehold.co/100x100/0b162c/10b981?text=LA+TRIBUNA';">
+               onerror="intentarOtroLogo(this)">
         </div>
         <span class="absolute -bottom-1 -right-1 bg-amber-500 text-slate-950 text-[9px] font-black px-2 py-0.5 rounded-full border border-amber-300 shadow">
           OFICIAL
@@ -70,8 +69,8 @@
       </h1>
       <div class="flex items-center gap-2 mt-0.5">
         <span class="text-xs font-black text-emerald-400 tracking-wider uppercase">QUINIELAS DEPORTIVAS</span>
-        <span class="text-slate-500 text-xs">•</span>
-        <span class="text-[11px] bg-amber-500/20 text-amber-300 border border-amber-500/40 px-2 py-0.2 rounded-full font-bold">
+        <span class="text-slate-600 text-xs">•</span>
+        <span class="text-[11px] bg-amber-500/10 text-amber-300 border border-amber-500/30 px-2 py-0.2 rounded-full font-bold">
           JORNADA 1
         </span>
       </div>
@@ -81,55 +80,55 @@
 
   <main class="max-w-md mx-auto px-4 mt-4">
 
-    <!-- Selector de Deporte con Estilo de Estadio -->
+    <!-- Selector de Deporte -->
     <div class="grid grid-cols-3 gap-2 mb-4">
-      <a href="index.html" class="text-center py-2.5 px-2 rounded-xl text-xs font-black bg-emerald-500 text-slate-950 border border-emerald-400 shadow-lg shadow-emerald-500/25 flex items-center justify-center gap-1.5">
+      <a href="index.html" class="text-center py-2.5 px-2 rounded-xl text-xs font-black bg-emerald-500 text-slate-950 border border-emerald-400 shadow-lg shadow-emerald-500/20 flex items-center justify-center gap-1.5">
         <span>⚽</span> Fútbol
       </a>
-      <a href="nfl.html" class="text-center py-2.5 px-2 rounded-xl text-xs font-bold bg-[#132242] text-slate-300 border border-slate-700/80 hover:border-amber-400/50 flex items-center justify-center gap-1.5 transition">
+      <a href="nfl.html" class="text-center py-2.5 px-2 rounded-xl text-xs font-bold bg-[#12141c] text-slate-300 border border-[#1e2230] hover:border-amber-400/40 flex items-center justify-center gap-1.5 transition">
         <span>🏈</span> NFL
       </a>
-      <a href="nba.html" class="text-center py-2.5 px-2 rounded-xl text-xs font-bold bg-[#132242] text-slate-300 border border-slate-700/80 hover:border-amber-400/50 flex items-center justify-center gap-1.5 transition">
+      <a href="nba.html" class="text-center py-2.5 px-2 rounded-xl text-xs font-bold bg-[#12141c] text-slate-300 border border-[#1e2230] hover:border-amber-400/40 flex items-center justify-center gap-1.5 transition">
         <span>🏀</span> NBA
       </a>
     </div>
 
-    <!-- Banner Informativo -->
-    <div class="bg-gradient-to-r from-[#132242] to-[#1a2f5c] border-2 border-amber-500/30 rounded-2xl p-3.5 mb-4 shadow-xl flex justify-between items-center">
+    <!-- Banner de Tarifas -->
+    <div class="bg-[#12141c] border border-amber-500/30 rounded-2xl p-3.5 mb-4 shadow-xl flex justify-between items-center">
       <div>
-        <p class="text-xs font-extrabold text-white flex items-center gap-1.5">
+        <p class="text-xs font-black text-white flex items-center gap-1.5">
           <i class="fa-solid fa-trophy text-amber-400"></i> $25 MXN por quiniela
         </p>
         <p class="text-[11px] text-emerald-400 font-bold mt-0.5">Mínimo 2 quinielas por pedido ($50 MXN)</p>
       </div>
       <div class="text-right">
-        <span class="text-xs font-black bg-amber-500 text-slate-950 px-2.5 py-1 rounded-lg">12 JUEGOS</span>
+        <span class="text-xs font-black bg-amber-500 text-slate-950 px-2.5 py-1 rounded-lg">11 JUEGOS</span>
       </div>
     </div>
 
     <!-- Nombre del Participante -->
-    <div class="bg-[#132242] border border-slate-700/80 rounded-2xl p-4 mb-4 shadow-lg">
+    <div class="bg-[#12141c] border border-[#1e2230] rounded-2xl p-4 mb-4 shadow-lg">
       <label class="block text-[11px] font-black uppercase tracking-wider text-amber-400 mb-1.5">
         <i class="fa-solid fa-user text-xs mr-1"></i> Nombre del Participante
       </label>
       <input type="text" id="nombreUsuario" placeholder="Ej. Juan Pérez" 
-             class="w-full bg-[#080f20] border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400 transition">
+             class="w-full bg-[#0b0d13] border border-[#232738] rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400 transition">
     </div>
 
-    <!-- Lista de Partidos con Escudos -->
+    <!-- Lista de Partidos -->
     <div id="listaPartidos" class="space-y-3">
-      <!-- Generado con JS -->
+      <!-- Generado por JavaScript -->
     </div>
 
     <!-- Botón Agregar Quiniela -->
     <button onclick="agregarQuiniela()" 
-            class="w-full mt-4 bg-gradient-to-r from-amber-500 via-amber-400 to-amber-500 hover:brightness-110 text-slate-950 font-black py-3.5 rounded-xl transition flex items-center justify-center gap-2 text-sm uppercase tracking-wider shadow-lg shadow-amber-500/30 active:scale-[0.99]">
+            class="w-full mt-4 bg-gradient-to-r from-amber-500 via-amber-400 to-amber-500 hover:brightness-110 text-slate-950 font-black py-3.5 rounded-xl transition flex items-center justify-center gap-2 text-sm uppercase tracking-wider shadow-lg shadow-amber-500/20 active:scale-[0.99]">
       <i class="fa-solid fa-plus-circle text-base"></i> Registrar Quiniela
     </button>
 
-    <!-- Carrito y Enlace a WhatsApp -->
-    <div id="seccionCarrito" class="mt-6 bg-[#132242] border-2 border-amber-500/40 rounded-2xl p-4 shadow-2xl hidden">
-      <div class="flex items-center justify-between mb-3 border-b border-slate-700 pb-2.5">
+    <!-- Resumen y Carrito -->
+    <div id="seccionCarrito" class="mt-6 bg-[#12141c] border border-amber-500/40 rounded-2xl p-4 shadow-2xl hidden">
+      <div class="flex items-center justify-between mb-3 border-b border-[#1e2230] pb-2.5">
         <h3 class="text-xs font-black uppercase text-amber-400 tracking-wider flex items-center gap-2">
           <i class="fa-solid fa-clipboard-check"></i> Quinielas en Carrito
         </h3>
@@ -138,13 +137,13 @@
 
       <div id="itemsCarrito" class="space-y-2 mb-4 text-xs"></div>
 
-      <div class="border-t border-slate-700 pt-3 flex justify-between items-center mb-4">
+      <div class="border-t border-[#1e2230] pt-3 flex justify-between items-center mb-4">
         <span class="text-xs text-slate-400 font-bold uppercase tracking-wider">Total a pagar:</span>
         <span id="totalPagar" class="text-lg font-black text-emerald-400">$0 MXN</span>
       </div>
 
       <button onclick="enviarWhatsApp()" 
-              class="w-full bg-gradient-to-r from-emerald-500 to-emerald-400 hover:brightness-110 text-slate-950 font-black py-3.5 rounded-xl transition flex items-center justify-center gap-2 text-sm uppercase tracking-wider shadow-lg shadow-emerald-500/30 active:scale-[0.99]">
+              class="w-full bg-gradient-to-r from-emerald-500 to-emerald-400 hover:brightness-110 text-slate-950 font-black py-3.5 rounded-xl transition flex items-center justify-center gap-2 text-sm uppercase tracking-wider shadow-lg shadow-emerald-500/25 active:scale-[0.99]">
         <i class="fa-brands fa-whatsapp text-xl"></i> Enviar pedido por WhatsApp
       </button>
     </div>
@@ -153,112 +152,115 @@
 
   <script>
     // ==========================================
-    // CONFIGURACIÓN DE TU QUINIELA
+    // CONFIGURACIÓN DE QUINIELA
     // ==========================================
-    const NUMERO_WHATSAPP = "52XXXXXXXXXX"; // Pon tus 10 dígitos aquí
+    const NUMERO_WHATSAPP = "52XXXXXXXXXX"; // Reemplaza con tus 10 dígitos
     const PRECIO_QUINIELA = 25;
 
-    // Partidos con escudos oficiales
+    // Respaldo de compatibilidad para el nombre de imagen
+    let intentos = 0;
+    const formatosLogo = ["logo.jpg", "logo.jpeg", "logo.png", "logo.jpg.jpg"];
+    function intentarOtroLogo(img) {
+      intentos++;
+      if (intentos < formatosLogo.length) {
+        img.src = formatosLogo[intentos];
+      }
+    }
+
+    // Cartelera Oficial de 11 Partidos con CDN de Google Sports
     const partidos = [
       {
         id: 1,
         local: "América",
-        logoLocal: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Club_Am%C3%A9rica_logo.svg/120px-Club_Am%C3%A9rica_logo.svg.png",
+        logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/QKZVogU66ByvZRqIAIVtmA_500x500.png",
         visita: "Guadalajara",
-        logoVisita: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Club_Deportivo_Guadalajara_logo.svg/120px-Club_Deportivo_Guadalajara_logo.svg.png"
+        logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/9le8bJW_PjNZYbuV3CO2Pg_500x500.png"
       },
       {
         id: 2,
         local: "Cruz Azul",
-        logoLocal: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Cruz_Azul_logo.svg/120px-Cruz_Azul_logo.svg.png",
+        logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/hwsmDtw_ETdVCS410dye3Q_500x500.png",
         visita: "Pumas UNAM",
-        logoVisita: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Club_Universidad_Nacional_logo.svg/120px-Club_Universidad_Nacional_logo.svg.png"
+        logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/EfPJSBOmHePNwgl6_FOuHA_500x500.png"
       },
       {
         id: 3,
-        local: "Tigres UANL",
-        logoLocal: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Tigres_UANL_logo.svg/120px-Tigres_UANL_logo.svg.png",
+        local: "Tigres",
+        logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/SUJAIkxhbnmFXDpJY2gSww_500x500.png",
         visita: "Monterrey",
-        logoVisita: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/CF_Monterrey_logo.svg/120px-CF_Monterrey_logo.svg.png"
+        logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/LXZ8fEgzf0_FwSyq15buPw_500x500.png"
       },
       {
         id: 4,
         local: "Toluca",
-        logoLocal: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Deportivo_Toluca_logo.svg/120px-Deportivo_Toluca_logo.svg.png",
+        logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/ycTgfmECsg0S-aVXCOPXcA_500x500.png",
         visita: "Pachuca",
-        logoVisita: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/C.F._Pachuca_logo.svg/120px-C.F._Pachuca_logo.svg.png"
+        logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/9dscoX8iYhzbjSNxXVp2gQ_500x500.png"
       },
       {
         id: 5,
         local: "Santos Laguna",
-        logoLocal: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Club_Santos_Laguna_logo.svg/120px-Club_Santos_Laguna_logo.svg.png",
+        logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/A7Np6PvBdRqYbaHYcVecyg_500x500.png",
         visita: "Atlas",
-        logoVisita: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Atlas_FC_logo.svg/120px-Atlas_FC_logo.svg.png"
+        logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/pl3U9pi7AYOBuIDiyl7vTg_500x500.png"
       },
       {
         id: 6,
         local: "León",
-        logoLocal: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Club_Le%C3%B3n_logo.svg/120px-Club_Le%C3%B3n_logo.svg.png",
+        logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/IR3AyUUEoSWoeTmicHAlKA_500x500.png",
         visita: "Necaxa",
-        logoVisita: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Club_Necaxa_logo.svg/120px-Club_Necaxa_logo.svg.png"
+        logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/pJ1MKX3vzO7svp-0f984tA_500x500.png"
       },
       {
         id: 7,
         local: "Puebla",
-        logoLocal: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Club_Puebla_logo.svg/120px-Club_Puebla_logo.svg.png",
+        logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/Xm6-xCbLZ-kNoxWQTen7-Q_500x500.png",
         visita: "FC Juárez",
-        logoVisita: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/FC_Ju%C3%A1rez_logo.svg/120px-FC_Ju%C3%A1rez_logo.svg.png"
+        logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/85-dl3QydggPuQl-kc2mtA_500x500.png"
       },
       {
         id: 8,
         local: "Tijuana",
-        logoLocal: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Club_Tijuana_logo.svg/120px-Club_Tijuana_logo.svg.png",
+        logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/LH2XadWT8Nk19o6SnbL4JA_500x500.png",
         visita: "Querétaro",
-        logoVisita: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Quer%C3%A9taro_F.C._logo.svg/120px-Quer%C3%A9taro_F.C._logo.svg.png"
+        logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/_dJ5qYYoDVTQOvru2Psrlw_500x500.png"
       },
       {
         id: 9,
-        local: "Atlético San Luis",
-        logoLocal: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Club_Atl%C3%A9tico_de_San_Luis_logo.svg/120px-Club_Atl%C3%A9tico_de_San_Luis_logo.svg.png",
+        local: "Atl. San Luis",
+        logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/ToSdfqXiatX8HuqqVcYgtA_500x500.png",
         visita: "Mazatlán",
-        logoVisita: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Mazatl%C3%A1n_F.C._logo.svg/120px-Mazatl%C3%A1n_F.C._logo.svg.png"
+        logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/t5LOnqxMCk-QEs20xw8wvw_500x500.png"
       },
       {
         id: 10,
         local: "Real Madrid",
-        logoLocal: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Real_Madrid_CF.svg/120px-Real_Madrid_CF.svg.png",
+        logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/Th4fAVAZeCJWRcKoLW7koA_500x500.png",
         visita: "Barcelona",
-        logoVisita: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/FC_Barcelona_%28crest%29.svg/120px-FC_Barcelona_%28crest%29.svg.png"
+        logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/nndjJyDStq9-z0MJSbv24g_500x500.png"
       },
       {
         id: 11,
         local: "Liverpool",
-        logoLocal: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Liverpool_FC.svg/120px-Liverpool_FC.svg.png",
+        logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/0iShHhASpXPnwRtzruadjA_500x500.png",
         visita: "Manchester City",
-        logoVisita: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Manchester_City_FC_badge.svg/120px-Manchester_City_FC_badge.svg.png"
-      },
-      {
-        id: 12,
-        local: "Arsenal",
-        logoLocal: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Arsenal_FC.svg/120px-Arsenal_FC.svg.png",
-        visita: "Chelsea",
-        logoVisita: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Chelsea_FC.svg/120px-Chelsea_FC.svg.png"
+        logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/r2DYakErVsYuhMuDadfdqA_500x500.png"
       }
     ];
 
     let seleccionActual = {};
     let quinielasEnCarrito = [];
 
-    // Pintar los partidos con escudos
+    // Renderizar tarjetas con escudos oficiales
     function renderPartidos() {
       const contenedor = document.getElementById("listaPartidos");
       contenedor.innerHTML = partidos.map(p => `
-        <div class="bg-[#132242] border border-slate-700/80 rounded-2xl p-3 shadow-md hover:border-amber-500/40 transition">
+        <div class="bg-[#12141c] border border-[#1e2230] rounded-2xl p-3 shadow-md hover:border-amber-500/40 transition">
           <div class="grid grid-cols-11 items-center mb-2.5 px-1">
             
             <!-- Local -->
             <div class="col-span-5 flex items-center gap-2">
-              <img src="${p.logoLocal}" alt="${p.local}" class="w-7 h-7 object-contain drop-shadow" onerror="this.style.display='none'">
+              <img src="${p.logoLocal}" alt="${p.local}" class="w-7 h-7 object-contain drop-shadow" loading="lazy">
               <span class="text-xs font-black text-slate-100 truncate">${p.local}</span>
             </div>
 
@@ -270,23 +272,23 @@
             <!-- Visita -->
             <div class="col-span-5 flex items-center justify-end gap-2 text-right">
               <span class="text-xs font-black text-slate-100 truncate">${p.visita}</span>
-              <img src="${p.logoVisita}" alt="${p.visita}" class="w-7 h-7 object-contain drop-shadow" onerror="this.style.display='none'">
+              <img src="${p.logoVisita}" alt="${p.visita}" class="w-7 h-7 object-contain drop-shadow" loading="lazy">
             </div>
 
           </div>
 
-          <!-- Botones L - E - V -->
+          <!-- Opciones L - E - V -->
           <div class="grid grid-cols-3 gap-2">
             <button onclick="elegir(${p.id}, 'L')" id="btn-${p.id}-L" 
-                    class="btn-pick py-2 text-xs font-bold rounded-xl border border-slate-700 bg-[#080f20] text-slate-300 hover:border-slate-500 transition">
+                    class="btn-pick py-2 text-xs font-bold rounded-xl border border-[#1e2230] bg-[#0b0d13] text-slate-300 hover:border-slate-600 transition">
               Local (L)
             </button>
             <button onclick="elegir(${p.id}, 'E')" id="btn-${p.id}-E" 
-                    class="btn-pick py-2 text-xs font-bold rounded-xl border border-slate-700 bg-[#080f20] text-slate-300 hover:border-slate-500 transition">
+                    class="btn-pick py-2 text-xs font-bold rounded-xl border border-[#1e2230] bg-[#0b0d13] text-slate-300 hover:border-slate-600 transition">
               Empate (E)
             </button>
             <button onclick="elegir(${p.id}, 'V')" id="btn-${p.id}-V" 
-                    class="btn-pick py-2 text-xs font-bold rounded-xl border border-slate-700 bg-[#080f20] text-slate-300 hover:border-slate-500 transition">
+                    class="btn-pick py-2 text-xs font-bold rounded-xl border border-[#1e2230] bg-[#0b0d13] text-slate-300 hover:border-slate-600 transition">
               Visita (V)
             </button>
           </div>
@@ -298,7 +300,7 @@
       seleccionActual[partidoId] = opcion;
       ['L', 'E', 'V'].forEach(opt => {
         const btn = document.getElementById(`btn-${partidoId}-${opt}`);
-        btn.className = "btn-pick py-2 text-xs font-bold rounded-xl border border-slate-700 bg-[#080f20] text-slate-300 hover:border-slate-500 transition";
+        btn.className = "btn-pick py-2 text-xs font-bold rounded-xl border border-[#1e2230] bg-[#0b0d13] text-slate-300 hover:border-slate-600 transition";
       });
       const btnActivo = document.getElementById(`btn-${partidoId}-${opcion}`);
       btnActivo.classList.add(`active-${opcion.toLowerCase()}`);
@@ -311,7 +313,7 @@
         return;
       }
       if (Object.keys(seleccionActual).length < partidos.length) {
-        alert(`Debes pronosticar los ${partidos.length} partidos antes de agregar.`);
+        alert(`Debes pronosticar los ${partidos.length} partidos antes de registrar.`);
         return;
       }
 
@@ -341,7 +343,7 @@
       total.innerText = `$${quinielasEnCarrito.length * PRECIO_QUINIELA} MXN`;
 
       contenedor.innerHTML = quinielasEnCarrito.map((q, idx) => `
-        <div class="flex justify-between items-center bg-[#080f20] px-3 py-2 rounded-xl border border-slate-700">
+        <div class="flex justify-between items-center bg-[#0b0d13] px-3 py-2 rounded-xl border border-[#1e2230]">
           <span class="font-bold text-slate-200">Q${idx + 1}: ${q.nombre}</span>
           <button onclick="eliminarQuiniela(${idx})" class="text-rose-400 hover:text-rose-300 p-1">
             <i class="fa-solid fa-trash-can"></i>
