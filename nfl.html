@@ -44,6 +44,7 @@
       box-shadow: 0 0 16px rgba(16, 185, 129, 0.4);
     }
 
+    /* Botones de Selección Activos L - V */
     .btn-pick.active-l {
       background: linear-gradient(135deg, #10b981, #059669) !important;
       color: #ffffff !important;
@@ -58,28 +59,42 @@
       box-shadow: 0 0 12px rgba(59, 130, 246, 0.5);
       font-weight: 900;
     }
+
+    /* Texto con Degradado Verde Esmeralda y Dorado */
+    .brand-title {
+      background: linear-gradient(135deg, #10b981 0%, #34d399 30%, #fbbf24 70%, #f59e0b 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 2px 6px rgba(16, 185, 129, 0.25));
+    }
   </style>
 </head>
 <body class="min-h-screen pb-28 font-sans antialiased">
 
-  <!-- Header Centrado sin imagen de logo, con insignia Oficial al lado -->
-  <header class="bg-[#0e1017] border-b border-[#232738] pt-4 pb-3 px-4 sticky top-0 z-40 shadow-2xl">
+  <!-- Header Centrado con Logo y Título Refinados -->
+  <header class="bg-[#0e1017] border-b border-[#232738] pt-3.5 pb-2.5 px-4 sticky top-0 z-40 shadow-2xl">
     <div class="max-w-md mx-auto flex flex-col items-center text-center">
-      <div class="flex items-center justify-center gap-2 mb-1">
-        <h1 class="text-2xl font-black tracking-widest text-amber-400 uppercase drop-shadow-md">
-          LA TRIBUNA
-        </h1>
-        <span class="bg-amber-500 text-slate-950 text-[10px] font-black px-2.5 py-0.5 rounded-full border border-amber-300 shadow">
-          OFICIAL
-        </span>
+      
+      <!-- Contenedor del Logo con Proporción Equilibrada -->
+      <div class="w-20 h-20 rounded-full p-1 bg-gradient-to-tr from-amber-500 via-emerald-400 to-amber-300 shadow-xl flex items-center justify-center overflow-hidden bg-[#090a0f] mb-1.5">
+        <img id="mainLogo" src="logo.jpg" alt="Quinielas La Tribuna" 
+             class="w-full h-full object-cover rounded-full"
+             onerror="intentarOtroLogo(this)">
       </div>
-      <div class="flex items-center gap-2 mt-0.5">
-        <span class="text-xs font-black text-emerald-400 tracking-wider uppercase">🏈 QUINIELA NFL</span>
+
+      <!-- Título Oficial Verde con Dorado -->
+      <h1 class="brand-title text-lg font-black tracking-wide uppercase leading-tight">
+        LA TRIBUNA QUINIELAS
+      </h1>
+
+      <div class="flex items-center gap-2 mt-1">
+        <span class="text-[11px] font-black text-emerald-400 tracking-wider uppercase">🏈 QUINIELA NFL</span>
         <span class="text-slate-600 text-xs">•</span>
-        <span class="text-[11px] bg-amber-500/10 text-amber-300 border border-amber-500/30 px-2 py-0.2 rounded-full font-bold">
+        <span class="text-[10px] bg-amber-500/10 text-amber-300 border border-amber-500/30 px-2 py-0.2 rounded-full font-bold">
           JORNADA 1
         </span>
       </div>
+
     </div>
   </header>
 
@@ -123,6 +138,7 @@
     <!-- Lista de Partidos NFL -->
     <div id="listaPartidos" class="space-y-3.5"></div>
 
+    <!-- Botón Agregar Quiniela -->
     <button onclick="agregarQuiniela()" 
             class="w-full mt-4 bg-gradient-to-r from-amber-500 via-amber-400 to-amber-500 hover:brightness-110 text-slate-950 font-black py-3.5 rounded-xl transition flex items-center justify-center gap-2 text-sm uppercase tracking-wider shadow-lg shadow-amber-500/20 active:scale-[0.99]">
       <i class="fa-solid fa-plus-circle text-base"></i> Registrar Quiniela
@@ -155,6 +171,15 @@
   <script>
     const NUMERO_WHATSAPP = "52XXXXXXXXXX"; // Reemplaza con tus 10 dígitos
     const PRECIO_QUINIELA = 25;
+
+    let intentos = 0;
+    const formatosLogo = ["logo.jpg", "logo.png", "logo.jpeg", "logo.jpg.jpg"];
+    function intentarOtroLogo(img) {
+      intentos++;
+      if (intentos < formatosLogo.length) {
+        img.src = formatosLogo[intentos];
+      }
+    }
 
     const partidos = [
       { id: 1, local: "Chiefs", logoLocal: "https://a.espncdn.com/i/teamlogos/nfl/500/kc.png", visita: "49ers", logoVisita: "https://a.espncdn.com/i/teamlogos/nfl/500/sf.png" },
@@ -191,104 +216,4 @@
           </div>
           <div class="grid grid-cols-2 gap-2">
             <button onclick="elegir(${p.id}, 'L')" id="btn-${p.id}-L" 
-                    class="btn-pick py-2 text-xs font-bold rounded-xl border border-[#232738] bg-[#0b0d13] text-slate-300 hover:border-slate-500 transition">
-              Local (L)
-            </button>
-            <button onclick="elegir(${p.id}, 'V')" id="btn-${p.id}-V" 
-                    class="btn-pick py-2 text-xs font-bold rounded-xl border border-[#232738] bg-[#0b0d13] text-slate-300 hover:border-slate-500 transition">
-              Visita (V)
-            </button>
-          </div>
-        </div>
-      `).join('');
-    }
-
-    function elegir(partidoId, opcion) {
-      seleccionActual[partidoId] = opcion;
-      ['L', 'V'].forEach(opt => {
-        const btn = document.getElementById(`btn-${partidoId}-${opt}`);
-        btn.className = "btn-pick py-2 text-xs font-bold rounded-xl border border-[#232738] bg-[#0b0d13] text-slate-300 hover:border-slate-500 transition";
-      });
-      const btnActivo = document.getElementById(`btn-${partidoId}-${opcion}`);
-      btnActivo.classList.add(`active-${opcion.toLowerCase()}`);
-    }
-
-    function agregarQuiniela() {
-      const nombre = document.getElementById("nombreUsuario").value.trim();
-      if (!nombre) {
-        alert("Por favor escribe tu nombre completo.");
-        return;
-      }
-      if (Object.keys(seleccionActual).length < partidos.length) {
-        alert(`Debes pronosticar los ${partidos.length} partidos antes de registrar.`);
-        return;
-      }
-
-      quinielasEnCarrito.push({
-        nombre: nombre,
-        picks: { ...seleccionActual }
-      });
-
-      seleccionActual = {};
-      renderPartidos();
-      actualizarCarrito();
-    }
-
-    function actualizarCarrito() {
-      const seccion = document.getElementById("seccionCarrito");
-      const contenedor = document.getElementById("itemsCarrito");
-      const total = document.getElementById("totalPagar");
-      const contador = document.getElementById("contadorQuinielas");
-
-      if (quinielasEnCarrito.length === 0) {
-        seccion.classList.add("hidden");
-        return;
-      }
-
-      seccion.classList.remove("hidden");
-      contador.innerText = quinielasEnCarrito.length;
-      total.innerText = `$${quinielasEnCarrito.length * PRECIO_QUINIELA} MXN`;
-
-      contenedor.innerHTML = quinielasEnCarrito.map((q, idx) => `
-        <div class="flex justify-between items-center bg-[#0b0d13] px-3 py-2 rounded-xl border border-[#232738]">
-          <span class="font-bold text-slate-200">Q${idx + 1}: ${q.nombre}</span>
-          <button onclick="eliminarQuiniela(${idx})" class="text-rose-400 hover:text-rose-300 p-1">
-            <i class="fa-solid fa-trash-can"></i>
-          </button>
-        </div>
-      `).join('');
-    }
-
-    function eliminarQuiniela(index) {
-      quinielasEnCarrito.splice(index, 1);
-      actualizarCarrito();
-    }
-
-    function enviarWhatsApp() {
-      if (quinielasEnCarrito.length < 2) {
-        alert("Recuerda que la participación mínima son 2 quinielas ($50 MXN).");
-        return;
-      }
-
-      let mensaje = `*🏆 PEDIDO QUINIELAS LA TRIBUNA - NFL*%0A`;
-      mensaje += `*Total quinielas:* ${quinielasEnCarrito.length}%0A`;
-      mensaje += `*Importe total:* $${quinielasEnCarrito.length * PRECIO_QUINIELA} MXN%0A%0A`;
-
-      quinielasEnCarrito.forEach((q, idx) => {
-        mensaje += `*--- QUINIELA #${idx + 1} (${q.nombre}) ---*%0A`;
-        partidos.forEach(p => {
-          mensaje += `${p.id}. ${p.local} vs ${p.visita}: *[${q.picks[p.id]}]*%0A`;
-        });
-        mensaje += `%0A`;
-      });
-
-      mensaje += `Quedo a la espera de los datos de transferencia.`;
-
-      const url = `https://wa.me/${NUMERO_WHATSAPP}?text=${mensaje}`;
-      window.open(url, '_blank');
-    }
-
-    renderPartidos();
-  </script>
-</body>
-</html>
+                    class="btn-pick py-2 text-xs font-bold rounded-xl border border-[#232738] bg-[#0b0d13] text-
