@@ -87,8 +87,9 @@
         LA TRIBUNA QUINIELAS
       </h1>
 
+      <!-- Subtítulo en Verde Esmeralda -->
       <div class="flex items-center gap-2 mt-1">
-        <span class="text-[11px] font-black text-amber-400 tracking-wider uppercase">🏀 QUINIELA NBA</span>
+        <span class="text-[11px] font-black text-emerald-400 tracking-wider uppercase">🏀 QUINIELA NBA</span>
         <span class="text-slate-600 text-xs">•</span>
         <span class="text-[10px] bg-amber-500/10 text-amber-300 border border-amber-500/30 px-2 py-0.2 rounded-full font-bold">
           JORNADA 1
@@ -108,7 +109,7 @@
       <a href="nfl.html" class="text-center py-2.5 px-2 rounded-xl text-xs font-bold bg-[#12141c] text-slate-300 border border-[#1e2230] hover:border-amber-400/40 flex items-center justify-center gap-1.5 transition">
         <span>🏈</span> NFL
       </a>
-      <a href="nba.html" class="text-center py-2.5 px-2 rounded-xl text-xs font-black bg-amber-500 text-slate-950 border border-amber-400 shadow-lg shadow-amber-500/20 flex items-center justify-center gap-1.5">
+      <a href="nba.html" class="text-center py-2.5 px-2 rounded-xl text-xs font-black bg-emerald-500 text-slate-950 border border-emerald-400 shadow-lg shadow-emerald-500/20 flex items-center justify-center gap-1.5">
         <span>🏀</span> NBA
       </a>
     </div>
@@ -199,6 +200,8 @@
 
     function renderPartidos() {
       const contenedor = document.getElementById("listaPartidos");
+      if (!contenedor) return;
+
       contenedor.innerHTML = partidos.map(p => `
         <div class="card-partido p-3.5">
           <div class="grid grid-cols-11 items-center mb-3 px-1">
@@ -215,11 +218,11 @@
             </div>
           </div>
           <div class="grid grid-cols-2 gap-2">
-            <button onclick="elegir(${p.id}, 'L')" id="btn-${p.id}-L" 
+            <button type="button" onclick="elegir(${p.id}, 'L')" id="btn-${p.id}-L" 
                     class="btn-pick py-2 text-xs font-bold rounded-xl border border-[#232738] bg-[#0b0d13] text-slate-300 hover:border-slate-500 transition">
               Local (L)
             </button>
-            <button onclick="elegir(${p.id}, 'V')" id="btn-${p.id}-V" 
+            <button type="button" onclick="elegir(${p.id}, 'V')" id="btn-${p.id}-V" 
                     class="btn-pick py-2 text-xs font-bold rounded-xl border border-[#232738] bg-[#0b0d13] text-slate-300 hover:border-slate-500 transition">
               Visita (V)
             </button>
@@ -232,10 +235,14 @@
       seleccionActual[partidoId] = opcion;
       ['L', 'V'].forEach(opt => {
         const btn = document.getElementById(`btn-${partidoId}-${opt}`);
-        btn.className = "btn-pick py-2 text-xs font-bold rounded-xl border border-[#232738] bg-[#0b0d13] text-slate-300 hover:border-slate-500 transition";
+        if (btn) {
+          btn.className = "btn-pick py-2 text-xs font-bold rounded-xl border border-[#232738] bg-[#0b0d13] text-slate-300 hover:border-slate-500 transition";
+        }
       });
       const btnActivo = document.getElementById(`btn-${partidoId}-${opcion}`);
-      btnActivo.classList.add(`active-${opcion.toLowerCase()}`);
+      if (btnActivo) {
+        btnActivo.classList.add(`active-${opcion.toLowerCase()}`);
+      }
     }
 
     function agregarQuiniela() {
@@ -313,6 +320,7 @@
       window.open(url, '_blank');
     }
 
+    document.addEventListener("DOMContentLoaded", renderPartidos);
     renderPartidos();
   </script>
 </body>
