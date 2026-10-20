@@ -7,7 +7,6 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    /* Estilo Negro Carbón Deportivo */
     :root {
       --bg-main: #090a0f;
       --card-bg: #12141c;
@@ -22,7 +21,6 @@
       color: #f1f5f9;
     }
 
-    /* Botones de Selección Activos */
     .btn-pick.active-l {
       background: linear-gradient(135deg, #10b981, #059669) !important;
       color: #ffffff !important;
@@ -48,11 +46,10 @@
 </head>
 <body class="min-h-screen pb-28 font-sans antialiased">
 
-  <!-- Header Centrado con Logo Oficial -->
+  <!-- Header Centrado con Logo -->
   <header class="bg-[#0e1017] border-b border-[#232738] pt-4 pb-3 px-4 sticky top-0 z-40 shadow-2xl">
     <div class="max-w-md mx-auto flex flex-col items-center text-center">
       
-      <!-- Contenedor del Logo -->
       <div class="relative mb-2">
         <div class="w-20 h-20 rounded-full p-1 bg-gradient-to-tr from-amber-500 via-emerald-400 to-amber-300 shadow-xl flex items-center justify-center overflow-hidden bg-[#090a0f]">
           <img id="mainLogo" src="logo.jpg" alt="Quinielas La Tribuna" 
@@ -93,7 +90,7 @@
       </a>
     </div>
 
-    <!-- Banner de Tarifas -->
+    <!-- Banner Informativo -->
     <div class="bg-[#12141c] border border-amber-500/30 rounded-2xl p-3.5 mb-4 shadow-xl flex justify-between items-center">
       <div>
         <p class="text-xs font-black text-white flex items-center gap-1.5">
@@ -115,18 +112,14 @@
              class="w-full bg-[#0b0d13] border border-[#232738] rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400 transition">
     </div>
 
-    <!-- Lista de Partidos -->
-    <div id="listaPartidos" class="space-y-3">
-      <!-- Generado por JavaScript -->
-    </div>
+    <!-- Lista de Partidos con Escudos -->
+    <div id="listaPartidos" class="space-y-3"></div>
 
-    <!-- Botón Agregar Quiniela -->
     <button onclick="agregarQuiniela()" 
             class="w-full mt-4 bg-gradient-to-r from-amber-500 via-amber-400 to-amber-500 hover:brightness-110 text-slate-950 font-black py-3.5 rounded-xl transition flex items-center justify-center gap-2 text-sm uppercase tracking-wider shadow-lg shadow-amber-500/20 active:scale-[0.99]">
       <i class="fa-solid fa-plus-circle text-base"></i> Registrar Quiniela
     </button>
 
-    <!-- Resumen y Carrito -->
     <div id="seccionCarrito" class="mt-6 bg-[#12141c] border border-amber-500/40 rounded-2xl p-4 shadow-2xl hidden">
       <div class="flex items-center justify-between mb-3 border-b border-[#1e2230] pb-2.5">
         <h3 class="text-xs font-black uppercase text-amber-400 tracking-wider flex items-center gap-2">
@@ -151,13 +144,9 @@
   </main>
 
   <script>
-    // ==========================================
-    // CONFIGURACIÓN DE QUINIELA
-    // ==========================================
     const NUMERO_WHATSAPP = "52XXXXXXXXXX"; // Reemplaza con tus 10 dígitos
     const PRECIO_QUINIELA = 25;
 
-    // Respaldo de compatibilidad para el nombre de imagen
     let intentos = 0;
     const formatosLogo = ["logo.jpg", "logo.jpeg", "logo.png", "logo.jpg.jpg"];
     function intentarOtroLogo(img) {
@@ -167,7 +156,7 @@
       }
     }
 
-    // Cartelera Oficial de 11 Partidos con CDN de Google Sports
+    // 11 PARTIDOS CON ESCUDOS 100% FUNCIONALES
     const partidos = [
       {
         id: 1,
@@ -237,47 +226,37 @@
         local: "Real Madrid",
         logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/Th4fAVAZeCJWRcKoLW7koA_500x500.png",
         visita: "Barcelona",
-        logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/nndjJyDStq9-z0MJSbv24g_500x500.png"
+        logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/paYnEE8hcrP96neHRNofhQ_500x500.png"
       },
       {
         id: 11,
         local: "Liverpool",
-        logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/0iShHhASpXPnwRtzruadjA_500x500.png",
+        logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/nGfV05dipbAc7zzojivKew_500x500.png",
         visita: "Manchester City",
-        logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/r2DYakErVsYuhMuDadfdqA_500x500.png"
+        logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/z44l-a0W1v5FmgPnemV6Xw_500x500.png"
       }
     ];
 
     let seleccionActual = {};
     let quinielasEnCarrito = [];
 
-    // Renderizar tarjetas con escudos oficiales
     function renderPartidos() {
       const contenedor = document.getElementById("listaPartidos");
       contenedor.innerHTML = partidos.map(p => `
         <div class="bg-[#12141c] border border-[#1e2230] rounded-2xl p-3 shadow-md hover:border-amber-500/40 transition">
           <div class="grid grid-cols-11 items-center mb-2.5 px-1">
-            
-            <!-- Local -->
             <div class="col-span-5 flex items-center gap-2">
               <img src="${p.logoLocal}" alt="${p.local}" class="w-7 h-7 object-contain drop-shadow" loading="lazy">
               <span class="text-xs font-black text-slate-100 truncate">${p.local}</span>
             </div>
-
-            <!-- VS -->
             <div class="col-span-1 text-center">
               <span class="text-[10px] text-amber-400 font-black">VS</span>
             </div>
-
-            <!-- Visita -->
             <div class="col-span-5 flex items-center justify-end gap-2 text-right">
               <span class="text-xs font-black text-slate-100 truncate">${p.visita}</span>
               <img src="${p.logoVisita}" alt="${p.visita}" class="w-7 h-7 object-contain drop-shadow" loading="lazy">
             </div>
-
           </div>
-
-          <!-- Opciones L - E - V -->
           <div class="grid grid-cols-3 gap-2">
             <button onclick="elegir(${p.id}, 'L')" id="btn-${p.id}-L" 
                     class="btn-pick py-2 text-xs font-bold rounded-xl border border-[#1e2230] bg-[#0b0d13] text-slate-300 hover:border-slate-600 transition">
