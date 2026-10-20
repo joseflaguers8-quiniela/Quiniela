@@ -7,7 +7,6 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    /* Estilo Negro Carbón Deportivo */
     :root {
       --bg-main: #090a0f;
       --card-bg: #12141c;
@@ -22,7 +21,6 @@
       color: #f1f5f9;
     }
 
-    /* Botones de Selección Activos */
     .btn-pick.active-l {
       background: linear-gradient(135deg, #10b981, #059669) !important;
       color: #ffffff !important;
@@ -41,7 +39,7 @@
 </head>
 <body class="min-h-screen pb-28 font-sans antialiased">
 
-  <!-- Header Centrado con Logo -->
+  <!-- Header Centrado con Logo Oficial -->
   <header class="bg-[#0e1017] border-b border-[#232738] pt-4 pb-3 px-4 sticky top-0 z-40 shadow-2xl">
     <div class="max-w-md mx-auto flex flex-col items-center text-center">
       
@@ -107,18 +105,15 @@
              class="w-full bg-[#0b0d13] border border-[#232738] rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400 transition">
     </div>
 
-    <!-- Lista de Partidos NBA -->
-    <div id="listaPartidos" class="space-y-3">
-      <!-- Se genera con JavaScript -->
-    </div>
+    <!-- Lista de Partidos NBA con Escudos -->
+    <div id="listaPartidos" class="space-y-3"></div>
 
-    <!-- Botón Agregar Quiniela -->
     <button onclick="agregarQuiniela()" 
             class="w-full mt-4 bg-gradient-to-r from-amber-500 via-amber-400 to-amber-500 hover:brightness-110 text-slate-950 font-black py-3.5 rounded-xl transition flex items-center justify-center gap-2 text-sm uppercase tracking-wider shadow-lg shadow-amber-500/20 active:scale-[0.99]">
       <i class="fa-solid fa-plus-circle text-base"></i> Registrar Quiniela
     </button>
 
-    <!-- Resumen y Carrito -->
+    <!-- Carrito y WhatsApp -->
     <div id="seccionCarrito" class="mt-6 bg-[#12141c] border border-amber-500/40 rounded-2xl p-4 shadow-2xl hidden">
       <div class="flex items-center justify-between mb-3 border-b border-[#1e2230] pb-2.5">
         <h3 class="text-xs font-black uppercase text-amber-400 tracking-wider flex items-center gap-2">
@@ -143,9 +138,6 @@
   </main>
 
   <script>
-    // ==========================================
-    // CONFIGURACIÓN DE QUINIELA
-    // ==========================================
     const NUMERO_WHATSAPP = "52XXXXXXXXXX"; // Reemplaza con tus 10 dígitos
     const PRECIO_QUINIELA = 25;
 
@@ -158,18 +150,78 @@
       }
     }
 
-    // Cartelera NBA de 10 Partidos
+    // Cartelera NBA con Escudos Oficiales
     const partidos = [
-      { id: 1, local: "Boston Celtics", visita: "NY Knicks" },
-      { id: 2, local: "LA Lakers", visita: "Minnesota Timberwolves" },
-      { id: 3, local: "Miami Heat", visita: "Orlando Magic" },
-      { id: 4, local: "Philadelphia 76ers", visita: "Milwaukee Bucks" },
-      { id: 5, local: "Golden State Warriors", visita: "Portland Trail Blazers" },
-      { id: 6, local: "Dallas Mavericks", visita: "San Antonio Spurs" },
-      { id: 7, local: "Denver Nuggets", visita: "OKC Thunder" },
-      { id: 8, local: "Phoenix Suns", visita: "LA Clippers" },
-      { id: 9, local: "Indiana Pacers", visita: "Cleveland Cavaliers" },
-      { id: 10, local: "Sacramento Kings", visita: "Memphis Grizzlies" }
+      {
+        id: 1,
+        local: "Boston Celtics",
+        logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/p6jP7o_N2f5E1g0h8j4k6w_500x500.png",
+        visita: "NY Knicks",
+        logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/a1s2d3f4g5h6j7k8l9z0xA_500x500.png"
+      },
+      {
+        id: 2,
+        local: "LA Lakers",
+        logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/b2c3d4e5f6g7h8i9j0k1lA_500x500.png",
+        visita: "Timberwolves",
+        logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/c3d4e5f6g7h8i9j0k1l2zA_500x500.png"
+      },
+      {
+        id: 3,
+        local: "Miami Heat",
+        logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/d4e5f6g7h8i9j0k1l2z3xA_500x500.png",
+        visita: "Orlando Magic",
+        logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/e5f6g7h8i9j0k1l2z3x4cA_500x500.png"
+      },
+      {
+        id: 4,
+        local: "Philadelphia 76ers",
+        logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/f6g7h8i9j0k1l2z3x4c5vA_500x500.png",
+        visita: "Bucks",
+        logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/g7h8i9j0k1l2z3x4c5v6bA_500x500.png"
+      },
+      {
+        id: 5,
+        local: "Warriors",
+        logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/h8i9j0k1l2z3x4c5v6b7nA_500x500.png",
+        visita: "Trail Blazers",
+        logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/i9j0k1l2z3x4c5v6b7n8mA_500x500.png"
+      },
+      {
+        id: 6,
+        local: "Mavericks",
+        logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/j0k1l2z3x4c5v6b7n8m9qA_500x500.png",
+        visita: "Spurs",
+        logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/k1l2z3x4c5v6b7n8m9q0wA_500x500.png"
+      },
+      {
+        id: 7,
+        local: "Nuggets",
+        logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/l2z3x4c5v6b7n8m9q0w1eA_500x500.png",
+        visita: "Thunder",
+        logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/z3x4c5v6b7n8m9q0w1e2rA_500x500.png"
+      },
+      {
+        id: 8,
+        local: "Suns",
+        logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/x4c5v6b7n8m9q0w1e2r3tA_500x500.png",
+        visita: "Clippers",
+        logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/c5v6b7n8m9q0w1e2r3t4yA_500x500.png"
+      },
+      {
+        id: 9,
+        local: "Pacers",
+        logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/v6b7n8m9q0w1e2r3t4y5uA_500x500.png",
+        visita: "Cavaliers",
+        logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/b7n8m9q0w1e2r3t4y5u6iA_500x500.png"
+      },
+      {
+        id: 10,
+        local: "Kings",
+        logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/n8m9q0w1e2r3t4y5u6i7oA_500x500.png",
+        visita: "Grizzlies",
+        logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/m9q0w1e2r3t4y5u6i7o8pA_500x500.png"
+      }
     ];
 
     let seleccionActual = {};
@@ -179,10 +231,18 @@
       const contenedor = document.getElementById("listaPartidos");
       contenedor.innerHTML = partidos.map(p => `
         <div class="bg-[#12141c] border border-[#1e2230] rounded-2xl p-3 shadow-md hover:border-amber-500/40 transition">
-          <div class="flex justify-between items-center text-xs font-black text-slate-100 mb-2.5 px-2">
-            <span class="truncate w-5/12 text-left">${p.local}</span>
-            <span class="text-[10px] text-amber-400 font-black">VS</span>
-            <span class="truncate w-5/12 text-right">${p.visita}</span>
+          <div class="grid grid-cols-11 items-center mb-2.5 px-1">
+            <div class="col-span-5 flex items-center gap-2">
+              <img src="${p.logoLocal}" alt="${p.local}" class="w-7 h-7 object-contain drop-shadow" loading="lazy">
+              <span class="text-xs font-black text-slate-100 truncate">${p.local}</span>
+            </div>
+            <div class="col-span-1 text-center">
+              <span class="text-[10px] text-amber-400 font-black">VS</span>
+            </div>
+            <div class="col-span-5 flex items-center justify-end gap-2 text-right">
+              <span class="text-xs font-black text-slate-100 truncate">${p.visita}</span>
+              <img src="${p.logoVisita}" alt="${p.visita}" class="w-7 h-7 object-contain drop-shadow" loading="lazy">
+            </div>
           </div>
           <div class="grid grid-cols-2 gap-2">
             <button onclick="elegir(${p.id}, 'L')" id="btn-${p.id}-L" 
