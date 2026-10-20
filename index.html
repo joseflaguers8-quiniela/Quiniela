@@ -19,17 +19,29 @@
       color: #f1f5f9;
     }
 
-    /* Borde redondeado temático del logotipo */
+    /* Marco redondeado con degradado exacto Oro y Verde Esmeralda del Logo */
     .card-partido {
-      background: linear-gradient(145deg, #131722, #0c0e14);
-      border: 2px solid rgba(245, 158, 11, 0.35);
+      position: relative;
+      background: #11141e;
       border-radius: 1.25rem;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-      transition: all 0.2s ease-in-out;
+      border: 2px solid transparent;
+      background-clip: padding-box;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5);
     }
-    .card-partido:hover {
-      border-color: rgba(16, 185, 129, 0.7);
-      box-shadow: 0 0 16px rgba(16, 185, 129, 0.25);
+    .card-partido::before {
+      content: '';
+      position: absolute;
+      top: -2px; bottom: -2px;
+      left: -2px; right: -2px;
+      background: linear-gradient(135deg, #f59e0b 0%, #10b981 100%);
+      border-radius: 1.35rem;
+      z-index: -1;
+      opacity: 0.85;
+      transition: opacity 0.2s ease, box-shadow 0.2s ease;
+    }
+    .card-partido:hover::before {
+      opacity: 1;
+      box-shadow: 0 0 16px rgba(16, 185, 129, 0.4);
     }
 
     /* Botones de Selección Activos L - E - V */
@@ -124,7 +136,7 @@
              class="w-full bg-[#0b0d13] border border-[#232738] rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400 transition">
     </div>
 
-    <!-- Lista de 11 Partidos con Marcos Redondeados y Escudos Oficiales -->
+    <!-- Lista de 11 Partidos con Marco Oro/Verde y Escudos ESPN CDN -->
     <div id="listaPartidos" class="space-y-3.5"></div>
 
     <!-- Botón Agregar Quiniela -->
@@ -173,4 +185,220 @@
       }
     }
 
-    // 11
+    // 11 Partidos con CDN de ESPN (Carga inmediata sin bloqueos)
+    const partidos = [
+      {
+        id: 1,
+        local: "América",
+        logoLocal: "https://a.espncdn.com/i/teamlogos/soccer/500/227.png",
+        visita: "Guadalajara",
+        logoVisita: "https://a.espncdn.com/i/teamlogos/soccer/500/217.png"
+      },
+      {
+        id: 2,
+        local: "Cruz Azul",
+        logoLocal: "https://a.espncdn.com/i/teamlogos/soccer/500/213.png",
+        visita: "Pumas UNAM",
+        logoVisita: "https://a.espncdn.com/i/teamlogos/soccer/500/232.png"
+      },
+      {
+        id: 3,
+        local: "Tigres",
+        logoLocal: "https://a.espncdn.com/i/teamlogos/soccer/500/234.png",
+        visita: "Monterrey",
+        logoVisita: "https://a.espncdn.com/i/teamlogos/soccer/500/225.png"
+      },
+      {
+        id: 4,
+        local: "Toluca",
+        logoLocal: "https://a.espncdn.com/i/teamlogos/soccer/500/235.png",
+        visita: "Pachuca",
+        logoVisita: "https://a.espncdn.com/i/teamlogos/soccer/500/228.png"
+      },
+      {
+        id: 5,
+        local: "Santos Laguna",
+        logoLocal: "https://a.espncdn.com/i/teamlogos/soccer/500/233.png",
+        visita: "Atlas",
+        logoVisita: "https://a.espncdn.com/i/teamlogos/soccer/500/214.png"
+      },
+      {
+        id: 6,
+        local: "León",
+        logoLocal: "https://a.espncdn.com/i/teamlogos/soccer/500/224.png",
+        visita: "Necaxa",
+        logoVisita: "https://a.espncdn.com/i/teamlogos/soccer/500/226.png"
+      },
+      {
+        id: 7,
+        local: "Puebla",
+        logoLocal: "https://a.espncdn.com/i/teamlogos/soccer/500/229.png",
+        visita: "FC Juárez",
+        logoVisita: "https://a.espncdn.com/i/teamlogos/soccer/500/17851.png"
+      },
+      {
+        id: 8,
+        local: "Tijuana",
+        logoLocal: "https://a.espncdn.com/i/teamlogos/soccer/500/7008.png",
+        visita: "Querétaro",
+        logoVisita: "https://a.espncdn.com/i/teamlogos/soccer/500/230.png"
+      },
+      {
+        id: 9,
+        local: "Atl. San Luis",
+        logoLocal: "https://a.espncdn.com/i/teamlogos/soccer/500/17852.png",
+        visita: "Mazatlán",
+        logoVisita: "https://a.espncdn.com/i/teamlogos/soccer/500/20927.png"
+      },
+      {
+        id: 10,
+        local: "Real Madrid",
+        logoLocal: "https://a.espncdn.com/i/teamlogos/soccer/500/86.png",
+        visita: "Barcelona",
+        logoVisita: "https://a.espncdn.com/i/teamlogos/soccer/500/83.png"
+      },
+      {
+        id: 11,
+        local: "Liverpool",
+        logoLocal: "https://a.espncdn.com/i/teamlogos/soccer/500/364.png",
+        visita: "Manchester City",
+        logoVisita: "https://a.espncdn.com/i/teamlogos/soccer/500/382.png"
+      }
+    ];
+
+    let seleccionActual = {};
+    let quinielasEnCarrito = [];
+
+    function renderPartidos() {
+      const contenedor = document.getElementById("listaPartidos");
+      contenedor.innerHTML = partidos.map(p => `
+        <div class="card-partido p-3.5">
+          <div class="grid grid-cols-11 items-center mb-3 px-1">
+            
+            <!-- Local -->
+            <div class="col-span-5 flex items-center gap-2">
+              <img src="${p.logoLocal}" alt="${p.local}" class="w-8 h-8 object-contain drop-shadow" loading="lazy">
+              <span class="text-xs font-black text-slate-100 truncate">${p.local}</span>
+            </div>
+
+            <!-- VS -->
+            <div class="col-span-1 text-center">
+              <span class="text-[10px] text-amber-400 font-black">VS</span>
+            </div>
+
+            <!-- Visita -->
+            <div class="col-span-5 flex items-center justify-end gap-2 text-right">
+              <span class="text-xs font-black text-slate-100 truncate">${p.visita}</span>
+              <img src="${p.logoVisita}" alt="${p.visita}" class="w-8 h-8 object-contain drop-shadow" loading="lazy">
+            </div>
+
+          </div>
+
+          <!-- Opciones L - E - V -->
+          <div class="grid grid-cols-3 gap-2">
+            <button onclick="elegir(${p.id}, 'L')" id="btn-${p.id}-L" 
+                    class="btn-pick py-2 text-xs font-bold rounded-xl border border-[#232738] bg-[#0b0d13] text-slate-300 hover:border-slate-500 transition">
+              Local (L)
+            </button>
+            <button onclick="elegir(${p.id}, 'E')" id="btn-${p.id}-E" 
+                    class="btn-pick py-2 text-xs font-bold rounded-xl border border-[#232738] bg-[#0b0d13] text-slate-300 hover:border-slate-500 transition">
+              Empate (E)
+            </button>
+            <button onclick="elegir(${p.id}, 'V')" id="btn-${p.id}-V" 
+                    class="btn-pick py-2 text-xs font-bold rounded-xl border border-[#232738] bg-[#0b0d13] text-slate-300 hover:border-slate-500 transition">
+              Visita (V)
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function elegir(partidoId, opcion) {
+      seleccionActual[partidoId] = opcion;
+      ['L', 'E', 'V'].forEach(opt => {
+        const btn = document.getElementById(`btn-${partidoId}-${opt}`);
+        btn.className = "btn-pick py-2 text-xs font-bold rounded-xl border border-[#232738] bg-[#0b0d13] text-slate-300 hover:border-slate-500 transition";
+      });
+      const btnActivo = document.getElementById(`btn-${partidoId}-${opcion}`);
+      btnActivo.classList.add(`active-${opcion.toLowerCase()}`);
+    }
+
+    function agregarQuiniela() {
+      const nombre = document.getElementById("nombreUsuario").value.trim();
+      if (!nombre) {
+        alert("Por favor escribe tu nombre completo.");
+        return;
+      }
+      if (Object.keys(seleccionActual).length < partidos.length) {
+        alert(`Debes pronosticar los ${partidos.length} partidos antes de registrar.`);
+        return;
+      }
+
+      quinielasEnCarrito.push({
+        nombre: nombre,
+        picks: { ...seleccionActual }
+      });
+
+      seleccionActual = {};
+      renderPartidos();
+      actualizarCarrito();
+    }
+
+    function actualizarCarrito() {
+      const seccion = document.getElementById("seccionCarrito");
+      const contenedor = document.getElementById("itemsCarrito");
+      const total = document.getElementById("totalPagar");
+      const contador = document.getElementById("contadorQuinielas");
+
+      if (quinielasEnCarrito.length === 0) {
+        seccion.classList.add("hidden");
+        return;
+      }
+
+      seccion.classList.remove("hidden");
+      contador.innerText = quinielasEnCarrito.length;
+      total.innerText = `$${quinielasEnCarrito.length * PRECIO_QUINIELA} MXN`;
+
+      contenedor.innerHTML = quinielasEnCarrito.map((q, idx) => `
+        <div class="flex justify-between items-center bg-[#0b0d13] px-3 py-2 rounded-xl border border-[#232738]">
+          <span class="font-bold text-slate-200">Q${idx + 1}: ${q.nombre}</span>
+          <button onclick="eliminarQuiniela(${idx})" class="text-rose-400 hover:text-rose-300 p-1">
+            <i class="fa-solid fa-trash-can"></i>
+          </button>
+        </div>
+      `).join('');
+    }
+
+    function eliminarQuiniela(index) {
+      quinielasEnCarrito.splice(index, 1);
+      actualizarCarrito();
+    }
+
+    function enviarWhatsApp() {
+      if (quinielasEnCarrito.length < 2) {
+        alert("Recuerda que la participación mínima son 2 quinielas ($50 MXN).");
+        return;
+      }
+
+      let mensaje = `*🏆 PEDIDO QUINIELAS LA TRIBUNA - FÚTBOL*%0A`;
+      mensaje += `*Total quinielas:* ${quinielasEnCarrito.length}%0A`;
+      mensaje += `*Importe total:* $${quinielasEnCarrito.length * PRECIO_QUINIELA} MXN%0A%0A`;
+
+      quinielasEnCarrito.forEach((q, idx) => {
+        mensaje += `*--- QUINIELA #${idx + 1} (${q.nombre}) ---*%0A`;
+        partidos.forEach(p => {
+          mensaje += `${p.id}. ${p.local} vs ${p.visita}: *[${q.picks[p.id]}]*%0A`;
+        });
+        mensaje += `%0A`;
+      });
+
+      mensaje += `Quedo a la espera de los datos de transferencia.`;
+
+      const url = `https://wa.me/${NUMERO_WHATSAPP}?text=${mensaje}`;
+      window.open(url, '_blank');
+    }
+
+    renderPartidos();
+  </script>
+</body>
+</html>
