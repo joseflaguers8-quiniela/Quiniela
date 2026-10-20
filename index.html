@@ -7,133 +7,145 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    /* Estilos basados en la identidad visual del logo oficial */
+    /* Paleta idéntica al logotipo de La Tribuna */
     :root {
-      --bg-stadium: #090f1d;
-      --card-stadium: #0f1a30;
-      --gold-primary: #f59e0b;
-      --green-primary: #10b981;
+      --tribuna-navy: #0b162c;
+      --tribuna-card: #132242;
+      --tribuna-card-sub: #080f20;
+      --tribuna-green: #10b981;
+      --tribuna-gold: #f59e0b;
+      --tribuna-gold-light: #fbbf24;
     }
 
     body {
-      background-color: var(--bg-stadium);
+      background-color: var(--tribuna-navy);
+      background-image: radial-gradient(circle at 50% 0%, #172a54 0%, #0b162c 80%);
+      color: #f8fafc;
     }
 
-    /* Iluminación de selección activa para cada botón */
+    /* Botones de pronóstico activos */
     .btn-pick.active-l {
-      background-color: #10b981 !important;
+      background: linear-gradient(135deg, #10b981, #059669) !important;
       color: #ffffff !important;
       border-color: #34d399 !important;
+      box-shadow: 0 0 14px rgba(16, 185, 129, 0.6);
       font-weight: 900;
-      box-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
     }
     .btn-pick.active-e {
-      background-color: #f59e0b !important;
-      color: #0f172a !important;
-      border-color: #fbbf24 !important;
+      background: linear-gradient(135deg, #f59e0b, #d97706) !important;
+      color: #0b162c !important;
+      border-color: #fde047 !important;
+      box-shadow: 0 0 14px rgba(245, 158, 11, 0.6);
       font-weight: 900;
-      box-shadow: 0 0 10px rgba(245, 158, 11, 0.4);
     }
     .btn-pick.active-v {
-      background-color: #2563eb !important;
+      background: linear-gradient(135deg, #3b82f6, #1d4ed8) !important;
       color: #ffffff !important;
-      border-color: #60a5fa !important;
+      border-color: #93c5fd !important;
+      box-shadow: 0 0 14px rgba(59, 130, 246, 0.6);
       font-weight: 900;
-      box-shadow: 0 0 10px rgba(37, 99, 235, 0.4);
     }
   </style>
 </head>
-<body class="text-slate-100 min-h-screen pb-24 font-sans antialiased">
+<body class="min-h-screen pb-28 font-sans antialiased">
 
-  <!-- Header Oficial con Logo y Borde Dorado -->
-  <header class="bg-[#0c1527] border-b border-amber-500/30 py-3 px-4 sticky top-0 z-40 shadow-xl">
-    <div class="max-w-md mx-auto flex items-center justify-between">
-      <div class="flex items-center gap-3">
-        <!-- Logo circular con marco de gradas/trofeo -->
-        <div class="w-12 h-12 rounded-full p-0.5 bg-gradient-to-tr from-amber-500 to-emerald-400 shadow-md flex items-center justify-center">
-          <img src="logo.png" alt="Quinielas La Tribuna" class="w-full h-full object-cover rounded-full bg-[#0c1527]">
+  <!-- Header Centrado con Logo Grande y Visible -->
+  <header class="bg-[#0b162c]/95 backdrop-blur border-b-2 border-amber-500/40 pt-4 pb-3 px-4 sticky top-0 z-40 shadow-2xl">
+    <div class="max-w-md mx-auto flex flex-col items-center text-center">
+      
+      <!-- Contenedor del Logo Destacado -->
+      <div class="relative mb-2">
+        <div class="w-20 h-20 rounded-full p-1 bg-gradient-to-tr from-amber-500 via-emerald-400 to-amber-300 shadow-xl shadow-emerald-500/20 flex items-center justify-center overflow-hidden bg-[#0b162c]">
+          <img src="logo.png" alt="Quinielas La Tribuna" 
+               class="w-full h-full object-cover rounded-full"
+               onerror="this.onerror=null; this.src='https://placehold.co/100x100/0b162c/10b981?text=LA+TRIBUNA';">
         </div>
-        <div>
-          <h1 class="text-base font-black tracking-wider text-amber-400 uppercase leading-none drop-shadow-sm">LA TRIBUNA</h1>
-          <p class="text-[11px] font-bold text-emerald-400 tracking-wide uppercase mt-0.5">Quinielas Deportivas</p>
-        </div>
+        <span class="absolute -bottom-1 -right-1 bg-amber-500 text-slate-950 text-[9px] font-black px-2 py-0.5 rounded-full border border-amber-300 shadow">
+          OFICIAL
+        </span>
       </div>
-      <div class="text-right">
-        <span class="text-[10px] bg-amber-500/10 text-amber-400 border border-amber-500/40 px-2.5 py-1 rounded-full font-black tracking-wide">
+
+      <h1 class="text-xl font-black tracking-widest text-amber-400 uppercase drop-shadow-md">
+        LA TRIBUNA
+      </h1>
+      <div class="flex items-center gap-2 mt-0.5">
+        <span class="text-xs font-black text-emerald-400 tracking-wider uppercase">QUINIELAS DEPORTIVAS</span>
+        <span class="text-slate-500 text-xs">•</span>
+        <span class="text-[11px] bg-amber-500/20 text-amber-300 border border-amber-500/40 px-2 py-0.2 rounded-full font-bold">
           JORNADA 1
         </span>
       </div>
+
     </div>
   </header>
 
   <main class="max-w-md mx-auto px-4 mt-4">
 
-    <!-- Menú Selector Multideporte -->
-    <div class="flex justify-center gap-2 mb-4">
-      <a href="index.html" class="flex-1 text-center py-2 px-2 rounded-xl text-xs font-black bg-emerald-500 text-slate-950 border border-emerald-400 shadow-md shadow-emerald-500/20">
-        ⚽ Fútbol
+    <!-- Selector de Deporte con Estilo de Estadio -->
+    <div class="grid grid-cols-3 gap-2 mb-4">
+      <a href="index.html" class="text-center py-2.5 px-2 rounded-xl text-xs font-black bg-emerald-500 text-slate-950 border border-emerald-400 shadow-lg shadow-emerald-500/25 flex items-center justify-center gap-1.5">
+        <span>⚽</span> Fútbol
       </a>
-      <a href="nfl.html" class="flex-1 text-center py-2 px-2 rounded-xl text-xs font-bold bg-[#0f1a30] text-slate-400 border border-slate-800 hover:border-amber-500/40">
-        🏈 NFL
+      <a href="nfl.html" class="text-center py-2.5 px-2 rounded-xl text-xs font-bold bg-[#132242] text-slate-300 border border-slate-700/80 hover:border-amber-400/50 flex items-center justify-center gap-1.5 transition">
+        <span>🏈</span> NFL
       </a>
-      <a href="nba.html" class="flex-1 text-center py-2 px-2 rounded-xl text-xs font-bold bg-[#0f1a30] text-slate-400 border border-slate-800 hover:border-amber-500/40">
-        🏀 NBA
+      <a href="nba.html" class="text-center py-2.5 px-2 rounded-xl text-xs font-bold bg-[#132242] text-slate-300 border border-slate-700/80 hover:border-amber-400/50 flex items-center justify-center gap-1.5 transition">
+        <span>🏀</span> NBA
       </a>
     </div>
 
-    <!-- Reglas y Tarifa de la Quiniela -->
-    <div class="bg-gradient-to-r from-[#0f1a30] to-[#122244] border border-amber-500/30 rounded-2xl p-3.5 mb-4 shadow-lg flex justify-between items-center">
+    <!-- Banner Informativo -->
+    <div class="bg-gradient-to-r from-[#132242] to-[#1a2f5c] border-2 border-amber-500/30 rounded-2xl p-3.5 mb-4 shadow-xl flex justify-between items-center">
       <div>
-        <p class="text-xs font-bold text-white flex items-center gap-1.5">
-          <i class="fa-solid fa-trophy text-amber-400 text-xs"></i> Costo: $25 MXN por quiniela
+        <p class="text-xs font-extrabold text-white flex items-center gap-1.5">
+          <i class="fa-solid fa-trophy text-amber-400"></i> $25 MXN por quiniela
         </p>
-        <p class="text-[11px] text-slate-400 mt-0.5">Mínimo 2 quinielas por pedido ($50 MXN)</p>
+        <p class="text-[11px] text-emerald-400 font-bold mt-0.5">Mínimo 2 quinielas por pedido ($50 MXN)</p>
       </div>
       <div class="text-right">
-        <span class="text-xs font-black text-amber-400">12 JUEGOS</span>
+        <span class="text-xs font-black bg-amber-500 text-slate-950 px-2.5 py-1 rounded-lg">12 JUEGOS</span>
       </div>
     </div>
 
     <!-- Nombre del Participante -->
-    <div class="bg-[#0f1a30] border border-slate-800 rounded-2xl p-4 mb-4 shadow-md">
-      <label class="block text-[11px] font-black uppercase tracking-wider text-amber-400/90 mb-1.5">
-        Nombre del Participante
+    <div class="bg-[#132242] border border-slate-700/80 rounded-2xl p-4 mb-4 shadow-lg">
+      <label class="block text-[11px] font-black uppercase tracking-wider text-amber-400 mb-1.5">
+        <i class="fa-solid fa-user text-xs mr-1"></i> Nombre del Participante
       </label>
       <input type="text" id="nombreUsuario" placeholder="Ej. Juan Pérez" 
-             class="w-full bg-[#080e1a] border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400 transition">
+             class="w-full bg-[#080f20] border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400 transition">
     </div>
 
-    <!-- Cartelera de Partidos (12 Partidos) -->
+    <!-- Lista de Partidos con Escudos -->
     <div id="listaPartidos" class="space-y-3">
-      <!-- Se generan automáticamente por JavaScript -->
+      <!-- Generado con JS -->
     </div>
 
-    <!-- Botón Agregar Quiniela al Carrito -->
+    <!-- Botón Agregar Quiniela -->
     <button onclick="agregarQuiniela()" 
-            class="w-full mt-4 bg-gradient-to-r from-amber-500 to-amber-400 hover:from-amber-400 hover:to-amber-300 text-slate-950 font-black py-3.5 rounded-xl transition flex items-center justify-center gap-2 text-sm uppercase tracking-wider shadow-lg shadow-amber-500/20 active:scale-[0.99]">
-      <i class="fa-solid fa-plus text-base"></i> Registrar Quiniela
+            class="w-full mt-4 bg-gradient-to-r from-amber-500 via-amber-400 to-amber-500 hover:brightness-110 text-slate-950 font-black py-3.5 rounded-xl transition flex items-center justify-center gap-2 text-sm uppercase tracking-wider shadow-lg shadow-amber-500/30 active:scale-[0.99]">
+      <i class="fa-solid fa-plus-circle text-base"></i> Registrar Quiniela
     </button>
 
-    <!-- Resumen y Checkout para WhatsApp -->
-    <div id="seccionCarrito" class="mt-6 bg-[#0f1a30] border border-amber-500/30 rounded-2xl p-4 shadow-xl hidden">
-      <div class="flex items-center justify-between mb-3 border-b border-slate-800 pb-2.5">
+    <!-- Carrito y Enlace a WhatsApp -->
+    <div id="seccionCarrito" class="mt-6 bg-[#132242] border-2 border-amber-500/40 rounded-2xl p-4 shadow-2xl hidden">
+      <div class="flex items-center justify-between mb-3 border-b border-slate-700 pb-2.5">
         <h3 class="text-xs font-black uppercase text-amber-400 tracking-wider flex items-center gap-2">
           <i class="fa-solid fa-clipboard-check"></i> Quinielas en Carrito
         </h3>
-        <span id="contadorQuinielas" class="text-xs bg-emerald-500 text-slate-950 px-2 py-0.5 rounded-full font-black">0</span>
+        <span id="contadorQuinielas" class="text-xs bg-emerald-500 text-slate-950 px-2.5 py-0.5 rounded-full font-black">0</span>
       </div>
 
       <div id="itemsCarrito" class="space-y-2 mb-4 text-xs"></div>
 
-      <div class="border-t border-slate-800 pt-3 flex justify-between items-center mb-4">
+      <div class="border-t border-slate-700 pt-3 flex justify-between items-center mb-4">
         <span class="text-xs text-slate-400 font-bold uppercase tracking-wider">Total a pagar:</span>
-        <span id="totalPagar" class="text-base font-black text-emerald-400">$0 MXN</span>
+        <span id="totalPagar" class="text-lg font-black text-emerald-400">$0 MXN</span>
       </div>
 
-      <!-- Botón de Envío Directo a WhatsApp -->
       <button onclick="enviarWhatsApp()" 
-              class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black py-3.5 rounded-xl transition flex items-center justify-center gap-2 text-sm uppercase tracking-wider shadow-lg shadow-emerald-500/25 active:scale-[0.99]">
-        <i class="fa-brands fa-whatsapp text-lg"></i> Enviar pedido por WhatsApp
+              class="w-full bg-gradient-to-r from-emerald-500 to-emerald-400 hover:brightness-110 text-slate-950 font-black py-3.5 rounded-xl transition flex items-center justify-center gap-2 text-sm uppercase tracking-wider shadow-lg shadow-emerald-500/30 active:scale-[0.99]">
+        <i class="fa-brands fa-whatsapp text-xl"></i> Enviar pedido por WhatsApp
       </button>
     </div>
 
@@ -141,52 +153,140 @@
 
   <script>
     // ==========================================
-    // CONFIGURACIÓN OFICIAL
+    // CONFIGURACIÓN DE TU QUINIELA
     // ==========================================
-    // Reemplaza los dígitos con tu número de WhatsApp (52 + 10 dígitos)
-    const NUMERO_WHATSAPP = "52XXXXXXXXXX"; 
+    const NUMERO_WHATSAPP = "52XXXXXXXXXX"; // Pon tus 10 dígitos aquí
     const PRECIO_QUINIELA = 25;
 
-    // Lista de 12 partidos para la jornada
+    // Partidos con escudos oficiales
     const partidos = [
-      { id: 1, local: "América", visita: "Guadalajara" },
-      { id: 2, local: "Cruz Azul", visita: "Pumas UNAM" },
-      { id: 3, local: "Tigres UANL", visita: "Monterrey" },
-      { id: 4, local: "Toluca", visita: "Pachuca" },
-      { id: 5, local: "Santos Laguna", visita: "Atlas" },
-      { id: 6, local: "León", visita: "Necaxa" },
-      { id: 7, local: "Puebla", visita: "FC Juárez" },
-      { id: 8, local: "Tijuana", visita: "Querétaro" },
-      { id: 9, local: "Atlético San Luis", visita: "Mazatlán" },
-      { id: 10, local: "Real Madrid", visita: "Barcelona" },
-      { id: 11, local: "Liverpool", visita: "Manchester City" },
-      { id: 12, local: "Arsenal", visita: "Chelsea" }
+      {
+        id: 1,
+        local: "América",
+        logoLocal: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Club_Am%C3%A9rica_logo.svg/120px-Club_Am%C3%A9rica_logo.svg.png",
+        visita: "Guadalajara",
+        logoVisita: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Club_Deportivo_Guadalajara_logo.svg/120px-Club_Deportivo_Guadalajara_logo.svg.png"
+      },
+      {
+        id: 2,
+        local: "Cruz Azul",
+        logoLocal: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Cruz_Azul_logo.svg/120px-Cruz_Azul_logo.svg.png",
+        visita: "Pumas UNAM",
+        logoVisita: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Club_Universidad_Nacional_logo.svg/120px-Club_Universidad_Nacional_logo.svg.png"
+      },
+      {
+        id: 3,
+        local: "Tigres UANL",
+        logoLocal: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Tigres_UANL_logo.svg/120px-Tigres_UANL_logo.svg.png",
+        visita: "Monterrey",
+        logoVisita: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/CF_Monterrey_logo.svg/120px-CF_Monterrey_logo.svg.png"
+      },
+      {
+        id: 4,
+        local: "Toluca",
+        logoLocal: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Deportivo_Toluca_logo.svg/120px-Deportivo_Toluca_logo.svg.png",
+        visita: "Pachuca",
+        logoVisita: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/C.F._Pachuca_logo.svg/120px-C.F._Pachuca_logo.svg.png"
+      },
+      {
+        id: 5,
+        local: "Santos Laguna",
+        logoLocal: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Club_Santos_Laguna_logo.svg/120px-Club_Santos_Laguna_logo.svg.png",
+        visita: "Atlas",
+        logoVisita: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Atlas_FC_logo.svg/120px-Atlas_FC_logo.svg.png"
+      },
+      {
+        id: 6,
+        local: "León",
+        logoLocal: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Club_Le%C3%B3n_logo.svg/120px-Club_Le%C3%B3n_logo.svg.png",
+        visita: "Necaxa",
+        logoVisita: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Club_Necaxa_logo.svg/120px-Club_Necaxa_logo.svg.png"
+      },
+      {
+        id: 7,
+        local: "Puebla",
+        logoLocal: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Club_Puebla_logo.svg/120px-Club_Puebla_logo.svg.png",
+        visita: "FC Juárez",
+        logoVisita: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/FC_Ju%C3%A1rez_logo.svg/120px-FC_Ju%C3%A1rez_logo.svg.png"
+      },
+      {
+        id: 8,
+        local: "Tijuana",
+        logoLocal: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Club_Tijuana_logo.svg/120px-Club_Tijuana_logo.svg.png",
+        visita: "Querétaro",
+        logoVisita: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Quer%C3%A9taro_F.C._logo.svg/120px-Quer%C3%A9taro_F.C._logo.svg.png"
+      },
+      {
+        id: 9,
+        local: "Atlético San Luis",
+        logoLocal: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Club_Atl%C3%A9tico_de_San_Luis_logo.svg/120px-Club_Atl%C3%A9tico_de_San_Luis_logo.svg.png",
+        visita: "Mazatlán",
+        logoVisita: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Mazatl%C3%A1n_F.C._logo.svg/120px-Mazatl%C3%A1n_F.C._logo.svg.png"
+      },
+      {
+        id: 10,
+        local: "Real Madrid",
+        logoLocal: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Real_Madrid_CF.svg/120px-Real_Madrid_CF.svg.png",
+        visita: "Barcelona",
+        logoVisita: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/FC_Barcelona_%28crest%29.svg/120px-FC_Barcelona_%28crest%29.svg.png"
+      },
+      {
+        id: 11,
+        local: "Liverpool",
+        logoLocal: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Liverpool_FC.svg/120px-Liverpool_FC.svg.png",
+        visita: "Manchester City",
+        logoVisita: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Manchester_City_FC_badge.svg/120px-Manchester_City_FC_badge.svg.png"
+      },
+      {
+        id: 12,
+        local: "Arsenal",
+        logoLocal: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Arsenal_FC.svg/120px-Arsenal_FC.svg.png",
+        visita: "Chelsea",
+        logoVisita: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Chelsea_FC.svg/120px-Chelsea_FC.svg.png"
+      }
     ];
 
     let seleccionActual = {};
     let quinielasEnCarrito = [];
 
-    // Pintar los partidos en la pantalla
+    // Pintar los partidos con escudos
     function renderPartidos() {
       const contenedor = document.getElementById("listaPartidos");
       contenedor.innerHTML = partidos.map(p => `
-        <div class="bg-[#0f1a30] border border-slate-800 rounded-2xl p-3 shadow-sm hover:border-slate-700 transition">
-          <div class="flex justify-between items-center text-xs font-black text-slate-200 mb-2 px-1">
-            <span class="truncate w-5/12 text-left">${p.local}</span>
-            <span class="text-[10px] text-amber-400/80 uppercase font-black">VS</span>
-            <span class="truncate w-5/12 text-right">${p.visita}</span>
+        <div class="bg-[#132242] border border-slate-700/80 rounded-2xl p-3 shadow-md hover:border-amber-500/40 transition">
+          <div class="grid grid-cols-11 items-center mb-2.5 px-1">
+            
+            <!-- Local -->
+            <div class="col-span-5 flex items-center gap-2">
+              <img src="${p.logoLocal}" alt="${p.local}" class="w-7 h-7 object-contain drop-shadow" onerror="this.style.display='none'">
+              <span class="text-xs font-black text-slate-100 truncate">${p.local}</span>
+            </div>
+
+            <!-- VS -->
+            <div class="col-span-1 text-center">
+              <span class="text-[10px] text-amber-400 font-black">VS</span>
+            </div>
+
+            <!-- Visita -->
+            <div class="col-span-5 flex items-center justify-end gap-2 text-right">
+              <span class="text-xs font-black text-slate-100 truncate">${p.visita}</span>
+              <img src="${p.logoVisita}" alt="${p.visita}" class="w-7 h-7 object-contain drop-shadow" onerror="this.style.display='none'">
+            </div>
+
           </div>
+
+          <!-- Botones L - E - V -->
           <div class="grid grid-cols-3 gap-2">
             <button onclick="elegir(${p.id}, 'L')" id="btn-${p.id}-L" 
-                    class="btn-pick py-2 text-xs font-bold rounded-xl border border-slate-700/80 bg-[#080e1a] text-slate-300 hover:border-slate-500 transition">
+                    class="btn-pick py-2 text-xs font-bold rounded-xl border border-slate-700 bg-[#080f20] text-slate-300 hover:border-slate-500 transition">
               Local (L)
             </button>
             <button onclick="elegir(${p.id}, 'E')" id="btn-${p.id}-E" 
-                    class="btn-pick py-2 text-xs font-bold rounded-xl border border-slate-700/80 bg-[#080e1a] text-slate-300 hover:border-slate-500 transition">
+                    class="btn-pick py-2 text-xs font-bold rounded-xl border border-slate-700 bg-[#080f20] text-slate-300 hover:border-slate-500 transition">
               Empate (E)
             </button>
             <button onclick="elegir(${p.id}, 'V')" id="btn-${p.id}-V" 
-                    class="btn-pick py-2 text-xs font-bold rounded-xl border border-slate-700/80 bg-[#080e1a] text-slate-300 hover:border-slate-500 transition">
+                    class="btn-pick py-2 text-xs font-bold rounded-xl border border-slate-700 bg-[#080f20] text-slate-300 hover:border-slate-500 transition">
               Visita (V)
             </button>
           </div>
@@ -194,24 +294,20 @@
       `).join('');
     }
 
-    // Gestionar la selección del usuario
     function elegir(partidoId, opcion) {
       seleccionActual[partidoId] = opcion;
-      
       ['L', 'E', 'V'].forEach(opt => {
         const btn = document.getElementById(`btn-${partidoId}-${opt}`);
-        btn.className = "btn-pick py-2 text-xs font-bold rounded-xl border border-slate-700/80 bg-[#080e1a] text-slate-300 hover:border-slate-500 transition";
+        btn.className = "btn-pick py-2 text-xs font-bold rounded-xl border border-slate-700 bg-[#080f20] text-slate-300 hover:border-slate-500 transition";
       });
-
       const btnActivo = document.getElementById(`btn-${partidoId}-${opcion}`);
       btnActivo.classList.add(`active-${opcion.toLowerCase()}`);
     }
 
-    // Guardar la quiniela actual en el carrito
     function agregarQuiniela() {
       const nombre = document.getElementById("nombreUsuario").value.trim();
       if (!nombre) {
-        alert("Por favor escribe tu nombre completo para identificar tu quiniela.");
+        alert("Por favor escribe tu nombre completo.");
         return;
       }
       if (Object.keys(seleccionActual).length < partidos.length) {
@@ -224,13 +320,11 @@
         picks: { ...seleccionActual }
       });
 
-      // Reiniciar formulario para la siguiente quiniela
       seleccionActual = {};
       renderPartidos();
       actualizarCarrito();
     }
 
-    // Actualizar la lista y total del carrito
     function actualizarCarrito() {
       const seccion = document.getElementById("seccionCarrito");
       const contenedor = document.getElementById("itemsCarrito");
@@ -247,9 +341,9 @@
       total.innerText = `$${quinielasEnCarrito.length * PRECIO_QUINIELA} MXN`;
 
       contenedor.innerHTML = quinielasEnCarrito.map((q, idx) => `
-        <div class="flex justify-between items-center bg-[#080e1a] px-3 py-2 rounded-xl border border-slate-800">
+        <div class="flex justify-between items-center bg-[#080f20] px-3 py-2 rounded-xl border border-slate-700">
           <span class="font-bold text-slate-200">Q${idx + 1}: ${q.nombre}</span>
-          <button onclick="eliminarQuiniela(${idx})" class="text-rose-400 hover:text-rose-300 p-1" title="Eliminar">
+          <button onclick="eliminarQuiniela(${idx})" class="text-rose-400 hover:text-rose-300 p-1">
             <i class="fa-solid fa-trash-can"></i>
           </button>
         </div>
@@ -261,7 +355,6 @@
       actualizarCarrito();
     }
 
-    // Abrir WhatsApp con el pedido estructurado
     function enviarWhatsApp() {
       if (quinielasEnCarrito.length < 2) {
         alert("Recuerda que la participación mínima son 2 quinielas ($50 MXN).");
@@ -280,7 +373,7 @@
         mensaje += `%0A`;
       });
 
-      mensaje += `Quedo a la espera de la cuenta para transferir y recibir mi confirmación.`;
+      mensaje += `Quedo a la espera de los datos de transferencia.`;
 
       const url = `https://wa.me/${NUMERO_WHATSAPP}?text=${mensaje}`;
       window.open(url, '_blank');
