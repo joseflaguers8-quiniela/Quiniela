@@ -66,23 +66,31 @@
       box-shadow: 0 0 12px rgba(59, 130, 246, 0.5);
       font-weight: 900;
     }
+
+    /* Texto con Degradado Verde Esmeralda y Dorado */
+    .brand-title {
+      background: linear-gradient(135deg, #10b981 0%, #34d399 30%, #fbbf24 70%, #f59e0b 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 2px 8px rgba(16, 185, 129, 0.25));
+    }
   </style>
 </head>
 <body class="min-h-screen pb-28 font-sans antialiased">
 
-  <!-- Header Centrado con Logo Oficial y Título "LA TRIBUNA QUINIELAS" -->
+  <!-- Header Centrado con Logo Grande y Título Verde/Dorado -->
   <header class="bg-[#0e1017] border-b border-[#232738] pt-4 pb-3 px-4 sticky top-0 z-40 shadow-2xl">
     <div class="max-w-md mx-auto flex flex-col items-center text-center">
       
-      <!-- Contenedor del Logo con borde degradado -->
-      <div class="w-20 h-20 rounded-full p-1 bg-gradient-to-tr from-amber-500 via-emerald-400 to-amber-300 shadow-xl flex items-center justify-center overflow-hidden bg-[#090a0f] mb-2">
+      <!-- Contenedor del Logo más grande -->
+      <div class="w-28 h-28 rounded-full p-1 bg-gradient-to-tr from-amber-500 via-emerald-400 to-amber-300 shadow-2xl flex items-center justify-center overflow-hidden bg-[#090a0f] mb-2">
         <img id="mainLogo" src="logo.jpg" alt="Quinielas La Tribuna" 
              class="w-full h-full object-cover rounded-full"
              onerror="intentarOtroLogo(this)">
       </div>
 
-      <!-- Nombre Oficial Solicitado -->
-      <h1 class="text-xl font-black tracking-widest text-amber-400 uppercase drop-shadow-md">
+      <!-- Título Oficial Verde con Dorado -->
+      <h1 class="brand-title text-2xl font-black tracking-wider uppercase">
         LA TRIBUNA QUINIELAS
       </h1>
 
@@ -134,7 +142,7 @@
              class="w-full bg-[#0b0d13] border border-[#232738] rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400 transition">
     </div>
 
-    <!-- Lista de 11 Partidos con Escudos Google Sports CDN -->
+    <!-- Lista de 11 Partidos -->
     <div id="listaPartidos" class="space-y-3.5"></div>
 
     <!-- Botón Agregar Quiniela -->
@@ -168,13 +176,9 @@
   </main>
 
   <script>
-    // ==========================================
-    // CONFIGURACIÓN DE QUINIELA
-    // ==========================================
     const NUMERO_WHATSAPP = "52XXXXXXXXXX"; // Reemplaza con tus 10 dígitos
     const PRECIO_QUINIELA = 25;
 
-    // Respaldo de imagen de logo
     let intentos = 0;
     const formatosLogo = ["logo.jpg", "logo.png", "logo.jpeg", "logo.jpg.jpg"];
     function intentarOtroLogo(img) {
@@ -184,7 +188,6 @@
       }
     }
 
-    // 11 Partidos con CDN de Google Sports (Sin bloqueo de CORS ni enlaces caídos)
     const partidos = [
       {
         id: 1,
@@ -254,12 +257,12 @@
         local: "Real Madrid",
         logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/Th4fAVAZeCJWRcKoLW7koA_500x500.png",
         visita: "Barcelona",
-        logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/Th4fAVAZeCJWRcKoLW7koA_500x500.png"
+        logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/paYnEE8hcrP96neHRNofhQ_500x500.png"
       },
       {
         id: 11,
         local: "Liverpool",
-        logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/z44l-a0W1v5FmgPnemV6Xw_500x500.png",
+        logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/nGfV05dipbAc7zzojivKew_500x500.png",
         visita: "Man. City",
         logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/z44l-a0W1v5FmgPnemV6Xw_500x500.png"
       }
