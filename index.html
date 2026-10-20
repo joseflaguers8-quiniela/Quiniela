@@ -72,32 +72,32 @@
       background: linear-gradient(135deg, #10b981 0%, #34d399 30%, #fbbf24 70%, #f59e0b 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      filter: drop-shadow(0 2px 8px rgba(16, 185, 129, 0.25));
+      filter: drop-shadow(0 2px 6px rgba(16, 185, 129, 0.25));
     }
   </style>
 </head>
 <body class="min-h-screen pb-28 font-sans antialiased">
 
-  <!-- Header Centrado con Logo Grande y Título Verde/Dorado -->
-  <header class="bg-[#0e1017] border-b border-[#232738] pt-4 pb-3 px-4 sticky top-0 z-40 shadow-2xl">
+  <!-- Header Centrado con Logo y Título Ligeramente Más Compactos -->
+  <header class="bg-[#0e1017] border-b border-[#232738] pt-3.5 pb-2.5 px-4 sticky top-0 z-40 shadow-2xl">
     <div class="max-w-md mx-auto flex flex-col items-center text-center">
       
-      <!-- Contenedor del Logo más grande -->
-      <div class="w-28 h-28 rounded-full p-1 bg-gradient-to-tr from-amber-500 via-emerald-400 to-amber-300 shadow-2xl flex items-center justify-center overflow-hidden bg-[#090a0f] mb-2">
+      <!-- Contenedor del Logo con Proporción Equilibrada -->
+      <div class="w-20 h-20 rounded-full p-1 bg-gradient-to-tr from-amber-500 via-emerald-400 to-amber-300 shadow-xl flex items-center justify-center overflow-hidden bg-[#090a0f] mb-1.5">
         <img id="mainLogo" src="logo.jpg" alt="Quinielas La Tribuna" 
              class="w-full h-full object-cover rounded-full"
              onerror="intentarOtroLogo(this)">
       </div>
 
-      <!-- Título Oficial Verde con Dorado -->
-      <h1 class="brand-title text-2xl font-black tracking-wider uppercase">
+      <!-- Título Proporcional Verde con Dorado -->
+      <h1 class="brand-title text-lg font-black tracking-wide uppercase leading-tight">
         LA TRIBUNA QUINIELAS
       </h1>
 
       <div class="flex items-center gap-2 mt-1">
-        <span class="text-xs font-black text-emerald-400 tracking-wider uppercase">⚽ QUINIELA FÚTBOL</span>
+        <span class="text-[11px] font-black text-emerald-400 tracking-wider uppercase">⚽ QUINIELA FÚTBOL</span>
         <span class="text-slate-600 text-xs">•</span>
-        <span class="text-[11px] bg-amber-500/10 text-amber-300 border border-amber-500/30 px-2 py-0.2 rounded-full font-bold">
+        <span class="text-[10px] bg-amber-500/10 text-amber-300 border border-amber-500/30 px-2 py-0.2 rounded-full font-bold">
           JORNADA 1
         </span>
       </div>
