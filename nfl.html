@@ -10,8 +10,6 @@
     :root {
       --bg-main: #090a0f;
       --card-bg: #12141c;
-      --card-inner: #0b0d13;
-      --border-color: #1e2230;
       --green-accent: #10b981;
       --gold-accent: #f59e0b;
     }
@@ -21,6 +19,20 @@
       color: #f1f5f9;
     }
 
+    /* Borde redondeado temático del logo */
+    .card-partido {
+      background: linear-gradient(145deg, #131722, #0c0e14);
+      border: 2px solid rgba(245, 158, 11, 0.35);
+      border-radius: 1.25rem;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+      transition: all 0.2s ease-in-out;
+    }
+    .card-partido:hover {
+      border-color: rgba(16, 185, 129, 0.7);
+      box-shadow: 0 0 16px rgba(16, 185, 129, 0.25);
+    }
+
+    /* Botones de Selección Activos */
     .btn-pick.active-l {
       background: linear-gradient(135deg, #10b981, #059669) !important;
       color: #ffffff !important;
@@ -84,7 +96,7 @@
     </div>
 
     <!-- Banner Informativo -->
-    <div class="bg-[#12141c] border border-amber-500/30 rounded-2xl p-3.5 mb-4 shadow-xl flex justify-between items-center">
+    <div class="card-partido p-3.5 mb-4 flex justify-between items-center">
       <div>
         <p class="text-xs font-black text-white flex items-center gap-1.5">
           <i class="fa-solid fa-trophy text-amber-400"></i> $25 MXN por quiniela
@@ -97,7 +109,7 @@
     </div>
 
     <!-- Nombre del Participante -->
-    <div class="bg-[#12141c] border border-[#1e2230] rounded-2xl p-4 mb-4 shadow-lg">
+    <div class="card-partido p-4 mb-4">
       <label class="block text-[11px] font-black uppercase tracking-wider text-amber-400 mb-1.5">
         <i class="fa-solid fa-user text-xs mr-1"></i> Nombre del Participante
       </label>
@@ -105,17 +117,17 @@
              class="w-full bg-[#0b0d13] border border-[#232738] rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400 transition">
     </div>
 
-    <!-- Lista de Partidos NFL con Escudos -->
-    <div id="listaPartidos" class="space-y-3"></div>
+    <!-- Lista de Partidos con Recuadros Redondeados y Escudos ESPN -->
+    <div id="listaPartidos" class="space-y-3.5"></div>
 
     <button onclick="agregarQuiniela()" 
             class="w-full mt-4 bg-gradient-to-r from-amber-500 via-amber-400 to-amber-500 hover:brightness-110 text-slate-950 font-black py-3.5 rounded-xl transition flex items-center justify-center gap-2 text-sm uppercase tracking-wider shadow-lg shadow-amber-500/20 active:scale-[0.99]">
       <i class="fa-solid fa-plus-circle text-base"></i> Registrar Quiniela
     </button>
 
-    <!-- Carrito y WhatsApp -->
-    <div id="seccionCarrito" class="mt-6 bg-[#12141c] border border-amber-500/40 rounded-2xl p-4 shadow-2xl hidden">
-      <div class="flex items-center justify-between mb-3 border-b border-[#1e2230] pb-2.5">
+    <!-- Resumen y Carrito -->
+    <div id="seccionCarrito" class="mt-6 card-partido p-4 hidden">
+      <div class="flex items-center justify-between mb-3 border-b border-[#232738] pb-2.5">
         <h3 class="text-xs font-black uppercase text-amber-400 tracking-wider flex items-center gap-2">
           <i class="fa-solid fa-clipboard-check"></i> Quinielas en Carrito
         </h3>
@@ -124,7 +136,7 @@
 
       <div id="itemsCarrito" class="space-y-2 mb-4 text-xs"></div>
 
-      <div class="border-t border-[#1e2230] pt-3 flex justify-between items-center mb-4">
+      <div class="border-t border-[#232738] pt-3 flex justify-between items-center mb-4">
         <span class="text-xs text-slate-400 font-bold uppercase tracking-wider">Total a pagar:</span>
         <span id="totalPagar" class="text-lg font-black text-emerald-400">$0 MXN</span>
       </div>
@@ -150,77 +162,77 @@
       }
     }
 
-    // Cartelera NFL con Escudos Oficiales
+    // Cartelera NFL con Logos ESPN CDN (Alta Definición Garantizada)
     const partidos = [
       {
         id: 1,
         local: "Chiefs",
-        logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/5NEt8rL7PZz7Q4kK_wN9Yg_500x500.png",
+        logoLocal: "https://a.espncdn.com/i/teamlogos/nfl/500/kc.png",
         visita: "49ers",
-        logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/ku-e_C2fUq90M_GZ3E7_Yw_500x500.png"
+        logoVisita: "https://a.espncdn.com/i/teamlogos/nfl/500/sf.png"
       },
       {
         id: 2,
         local: "Cowboys",
-        logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/RcfvN8k_l2K5E5z8fJmUuA_500x500.png",
+        logoLocal: "https://a.espncdn.com/i/teamlogos/nfl/500/dal.png",
         visita: "Eagles",
-        logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/n6fB_Pshn39d37_g-b8HcA_500x500.png"
+        logoVisita: "https://a.espncdn.com/i/teamlogos/nfl/500/phi.png"
       },
       {
         id: 3,
         local: "Ravens",
-        logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/aXUaF9s34-l0k1A5P6F1gQ_500x500.png",
+        logoLocal: "https://a.espncdn.com/i/teamlogos/nfl/500/bal.png",
         visita: "Steelers",
-        logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/A0UuLw3wP1g2m5N7c1d3pA_500x500.png"
+        logoVisita: "https://a.espncdn.com/i/teamlogos/nfl/500/pit.png"
       },
       {
         id: 4,
         local: "Bills",
-        logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/yq9lB5w1z2P4o7N0r8E6tw_500x500.png",
+        logoLocal: "https://a.espncdn.com/i/teamlogos/nfl/500/buf.png",
         visita: "Dolphins",
-        logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/X_G2f0m8v4r5E6t7y8U9iA_500x500.png"
+        logoVisita: "https://a.espncdn.com/i/teamlogos/nfl/500/mia.png"
       },
       {
         id: 5,
         local: "Lions",
-        logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/7z0g3m4q5r6t7y8u9i0oPA_500x500.png",
+        logoLocal: "https://a.espncdn.com/i/teamlogos/nfl/500/det.png",
         visita: "Packers",
-        logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/e0f1g2h3j4k5l6z7x8c9vB_500x500.png"
+        logoVisita: "https://a.espncdn.com/i/teamlogos/nfl/500/gb.png"
       },
       {
         id: 6,
         local: "Texans",
-        logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/1a2b3c4d5e6f7g8h9i0jKA_500x500.png",
+        logoLocal: "https://a.espncdn.com/i/teamlogos/nfl/500/hou.png",
         visita: "Colts",
-        logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/q1w2e3r4t5y6u7i8o9p0LA_500x500.png"
+        logoVisita: "https://a.espncdn.com/i/teamlogos/nfl/500/ind.png"
       },
       {
         id: 7,
         local: "Bengals",
-        logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/z9x8c7v6b5n4m3a2s1d0FA_500x500.png",
+        logoLocal: "https://a.espncdn.com/i/teamlogos/nfl/500/cin.png",
         visita: "Browns",
-        logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/p0o9i8u7y6t5r4e3w2q1SA_500x500.png"
+        logoVisita: "https://a.espncdn.com/i/teamlogos/nfl/500/cle.png"
       },
       {
         id: 8,
         local: "Seahawks",
-        logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/l1k2j3h4g5f6d7s8a9p0WA_500x500.png",
+        logoLocal: "https://a.espncdn.com/i/teamlogos/nfl/500/sea.png",
         visita: "Rams",
-        logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/m9n8b7v6c5x4z3a2s1d0EA_500x500.png"
+        logoVisita: "https://a.espncdn.com/i/teamlogos/nfl/500/lar.png"
       },
       {
         id: 9,
         local: "Cardinals",
-        logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/k0j9h8g7f6d5s4a3p2o1RA_500x500.png",
+        logoLocal: "https://a.espncdn.com/i/teamlogos/nfl/500/ari.png",
         visita: "Chargers",
-        logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/t1y2u3i4o5p6a7s8d9f0TA_500x500.png"
+        logoVisita: "https://a.espncdn.com/i/teamlogos/nfl/500/lac.png"
       },
       {
         id: 10,
         local: "Vikings",
-        logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/w9e8r7t6y5u4i3o2p1a0YA_500x500.png",
+        logoLocal: "https://a.espncdn.com/i/teamlogos/nfl/500/min.png",
         visita: "Bears",
-        logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/u1i2o3p4a5s6d7f8g9h0UA_500x500.png"
+        logoVisita: "https://a.espncdn.com/i/teamlogos/nfl/500/chi.png"
       }
     ];
 
@@ -230,10 +242,10 @@
     function renderPartidos() {
       const contenedor = document.getElementById("listaPartidos");
       contenedor.innerHTML = partidos.map(p => `
-        <div class="bg-[#12141c] border border-[#1e2230] rounded-2xl p-3 shadow-md hover:border-amber-500/40 transition">
-          <div class="grid grid-cols-11 items-center mb-2.5 px-1">
+        <div class="card-partido p-3.5">
+          <div class="grid grid-cols-11 items-center mb-3 px-1">
             <div class="col-span-5 flex items-center gap-2">
-              <img src="${p.logoLocal}" alt="${p.local}" class="w-7 h-7 object-contain drop-shadow" loading="lazy">
+              <img src="${p.logoLocal}" alt="${p.local}" class="w-8 h-8 object-contain drop-shadow" loading="lazy">
               <span class="text-xs font-black text-slate-100 truncate">${p.local}</span>
             </div>
             <div class="col-span-1 text-center">
@@ -241,16 +253,16 @@
             </div>
             <div class="col-span-5 flex items-center justify-end gap-2 text-right">
               <span class="text-xs font-black text-slate-100 truncate">${p.visita}</span>
-              <img src="${p.logoVisita}" alt="${p.visita}" class="w-7 h-7 object-contain drop-shadow" loading="lazy">
+              <img src="${p.logoVisita}" alt="${p.visita}" class="w-8 h-8 object-contain drop-shadow" loading="lazy">
             </div>
           </div>
           <div class="grid grid-cols-2 gap-2">
             <button onclick="elegir(${p.id}, 'L')" id="btn-${p.id}-L" 
-                    class="btn-pick py-2 text-xs font-bold rounded-xl border border-[#1e2230] bg-[#0b0d13] text-slate-300 hover:border-slate-600 transition">
+                    class="btn-pick py-2 text-xs font-bold rounded-xl border border-[#232738] bg-[#0b0d13] text-slate-300 hover:border-slate-500 transition">
               Local (L)
             </button>
             <button onclick="elegir(${p.id}, 'V')" id="btn-${p.id}-V" 
-                    class="btn-pick py-2 text-xs font-bold rounded-xl border border-[#1e2230] bg-[#0b0d13] text-slate-300 hover:border-slate-600 transition">
+                    class="btn-pick py-2 text-xs font-bold rounded-xl border border-[#232738] bg-[#0b0d13] text-slate-300 hover:border-slate-500 transition">
               Visita (V)
             </button>
           </div>
@@ -262,7 +274,7 @@
       seleccionActual[partidoId] = opcion;
       ['L', 'V'].forEach(opt => {
         const btn = document.getElementById(`btn-${partidoId}-${opt}`);
-        btn.className = "btn-pick py-2 text-xs font-bold rounded-xl border border-[#1e2230] bg-[#0b0d13] text-slate-300 hover:border-slate-600 transition";
+        btn.className = "btn-pick py-2 text-xs font-bold rounded-xl border border-[#232738] bg-[#0b0d13] text-slate-300 hover:border-slate-500 transition";
       });
       const btnActivo = document.getElementById(`btn-${partidoId}-${opcion}`);
       btnActivo.classList.add(`active-${opcion.toLowerCase()}`);
@@ -305,7 +317,7 @@
       total.innerText = `$${quinielasEnCarrito.length * PRECIO_QUINIELA} MXN`;
 
       contenedor.innerHTML = quinielasEnCarrito.map((q, idx) => `
-        <div class="flex justify-between items-center bg-[#0b0d13] px-3 py-2 rounded-xl border border-[#1e2230]">
+        <div class="flex justify-between items-center bg-[#0b0d13] px-3 py-2 rounded-xl border border-[#232738]">
           <span class="font-bold text-slate-200">Q${idx + 1}: ${q.nombre}</span>
           <button onclick="eliminarQuiniela(${idx})" class="text-rose-400 hover:text-rose-300 p-1">
             <i class="fa-solid fa-trash-can"></i>
