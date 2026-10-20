@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quinielas La Tribuna | NBA</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* Estilo Negro Carbón Deportivo */
+    :root {
+      --bg-main: #090a0f;
+      --card-bg: #12141c;
+      --card-inner: #0b0d13;
+      --border-color: #1e2230;
+      --green-accent: #10b981;
+      --gold-accent: #f59e0b;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: #f1f5f9;
+    }
+
+    /* Botones de Selección Activos */
+    .btn-pick.active-l {
+      background: linear-gradient(135deg, #10b981, #059669) !important;
+      color: #ffffff !important;
+      border-color: #34d399 !important;
+      box-shadow: 0 0 12px rgba(16, 185, 129, 0.5);
+      font-weight: 900;
+    }
+    .btn-pick.active-v {
+      background: linear-gradient(135deg, #3b82f6, #1d4ed8) !important;
+      color: #ffffff !important;
+      border-color: #93c5fd !important;
+      box-shadow: 0 0 12px rgba(59, 130, 246, 0.5);
+      font-weight: 900;
+    }
+  </style>
+</head>
+<body class="min-h-screen pb-28 font-sans antialiased">
+
+  <!-- Header Centrado con Logo -->
+  <header class="bg-[#0e1017] border-b border-[#232738] pt-4 pb-3 px-4 sticky top-0 z-40 shadow-2xl">
+    <div class="max-w-md mx-auto flex flex-col items-center text-center">
+      
+      <div class="relative mb-2">
+        <div class="w-20 h-20 rounded-full p-1 bg-gradient-to-tr from-amber-500 via-emerald-400 to-amber-300 shadow-xl flex items-center justify-center overflow-hidden bg-[#090a0f]">
+          <img id="mainLogo" src="logo.jpg" alt="Quinielas La Tribuna" 
+               class="w-full h-full object-cover rounded-full"
+               onerror="intentarOtroLogo(this)">
+        </div>
+        <span class="absolute -bottom-1 -right-1 bg-amber-500 text-slate-950 text-[9px] font-black px-2 py-0.5 rounded-full border border-amber-300 shadow">
+          OFICIAL
+        </span>
+      </div>
+
+      <h1 class="text-xl font-black tracking-widest text-amber-400 uppercase drop-shadow-md">
+        LA TRIBUNA
+      </h1>
+      <div class="flex items-center gap-2 mt-0.5">
+        <span class="text-xs font-black text-amber-400 tracking-wider uppercase">🏀 QUINIELA NBA</span>
+        <span class="text-slate-600 text-xs">•</span>
+        <span class="text-[11px] bg-amber-500/10 text-amber-300 border border-amber-500/30 px-2 py-0.2 rounded-full font-bold">
+          JORNADA 1
+        </span>
+      </div>
+
+    </div>
+  </header>
+
+  <main class="max-w-md mx-auto px-4 mt-4">
+
+    <!-- Selector de Deporte -->
+    <div class="grid grid-cols-3 gap-2 mb-4">
+      <a href="index.html" class="text-center py-2.5 px-2 rounded-xl text-xs font-bold bg-[#12141c] text-slate-300 border border-[#1e2230] hover:border-amber-400/40 flex items-center justify-center gap-1.5 transition">
+        <span>⚽</span> Fútbol
+      </a>
+      <a href="nfl.html" class="text-center py-2.5 px-2 rounded-xl text-xs font-bold bg-[#12141c] text-slate-300 border border-[#1e2230] hover:border-amber-400/40 flex items-center justify-center gap-1.5 transition">
+        <span>🏈</span> NFL
+      </a>
+      <a href="nba.html" class="text-center py-2.5 px-2 rounded-xl text-xs font-black bg-amber-500 text-slate-950 border border-amber-400 shadow-lg shadow-amber-500/20 flex items-center justify-center gap-1.5">
+        <span>🏀</span> NBA
+      </a>
+    </div>
+
+    <!-- Banner Informativo -->
+    <div class="bg-[#12141c] border border-amber-500/30 rounded-2xl p-3.5 mb-4 shadow-xl flex justify-between items-center">
+      <div>
+        <p class="text-xs font-black text-white flex items-center gap-1.5">
+          <i class="fa-solid fa-trophy text-amber-400"></i> $25 MXN por quiniela
+        </p>
+        <p class="text-[11px] text-emerald-400 font-bold mt-0.5">Mínimo 2 quinielas por pedido ($50 MXN)</p>
+      </div>
+      <div class="text-right">
+        <span class="text-xs font-black bg-amber-500 text-slate-950 px-2.5 py-1 rounded-lg">10 JUEGOS</span>
+      </div>
+    </div>
+
+    <!-- Nombre del Participante -->
+    <div class="bg-[#12141c] border border-[#1e2230] rounded-2xl p-4 mb-4 shadow-lg">
+      <label class="block text-[11px] font-black uppercase tracking-wider text-amber-400 mb-1.5">
+        <i class="fa-solid fa-user text-xs mr-1"></i> Nombre del Participante
+      </label>
+      <input type="text" id="nombreUsuario" placeholder="Ej. Juan Pérez" 
+             class="w-full bg-[#0b0d13] border border-[#232738] rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400 transition">
+    </div>
+
+    <!-- Lista de Partidos NBA -->
+    <div id="listaPartidos" class="space-y-3">
+      <!-- Se genera con JavaScript -->
+    </div>
+
+    <!-- Botón Agregar Quiniela -->
+    <button onclick="agregarQuiniela()" 
+            class="w-full mt-4 bg-gradient-to-r from-amber-500 via-amber-400 to-amber-500 hover:brightness-110 text-slate-950 font-black py-3.5 rounded-xl transition flex items-center justify-center gap-2 text-sm uppercase tracking-wider shadow-lg shadow-amber-500/20 active:scale-[0.99]">
+      <i class="fa-solid fa-plus-circle text-base"></i> Registrar Quiniela
+    </button>
+
+    <!-- Resumen y Carrito -->
+    <div id="seccionCarrito" class="mt-6 bg-[#12141c] border border-amber-500/40 rounded-2xl p-4 shadow-2xl hidden">
+      <div class="flex items-center justify-between mb-3 border-b border-[#1e2230] pb-2.5">
+        <h3 class="text-xs font-black uppercase text-amber-400 tracking-wider flex items-center gap-2">
+          <i class="fa-solid fa-clipboard-check"></i> Quinielas en Carrito
+        </h3>
+        <span id="contadorQuinielas" class="text-xs bg-emerald-500 text-slate-950 px-2.5 py-0.5 rounded-full font-black">0</span>
+      </div>
+
+      <div id="itemsCarrito" class="space-y-2 mb-4 text-xs"></div>
+
+      <div class="border-t border-[#1e2230] pt-3 flex justify-between items-center mb-4">
+        <span class="text-xs text-slate-400 font-bold uppercase tracking-wider">Total a pagar:</span>
+        <span id="totalPagar" class="text-lg font-black text-emerald-400">$0 MXN</span>
+      </div>
+
+      <button onclick="enviarWhatsApp()" 
+              class="w-full bg-gradient-to-r from-emerald-500 to-emerald-400 hover:brightness-110 text-slate-950 font-black py-3.5 rounded-xl transition flex items-center justify-center gap-2 text-sm uppercase tracking-wider shadow-lg shadow-emerald-500/25 active:scale-[0.99]">
+        <i class="fa-brands fa-whatsapp text-xl"></i> Enviar pedido por WhatsApp
+      </button>
+    </div>
+
+  </main>
+
+  <script>
+    // ==========================================
+    // CONFIGURACIÓN DE QUINIELA
+    // ==========================================
+    const NUMERO_WHATSAPP = "52XXXXXXXXXX"; // Reemplaza con tus 10 dígitos
+    const PRECIO_QUINIELA = 25;
+
+    let intentos = 0;
+    const formatosLogo = ["logo.jpg", "logo.jpeg", "logo.png", "logo.jpg.jpg"];
+    function intentarOtroLogo(img) {
+      intentos++;
+      if (intentos < formatosLogo.length) {
+        img.src = formatosLogo[intentos];
+      }
+    }
+
+    // Cartelera NBA de 10 Partidos
+    const partidos = [
+      { id: 1, local: "Boston Celtics", visita: "NY Knicks" },
+      { id: 2, local: "LA Lakers", visita: "Minnesota Timberwolves" },
+      { id: 3, local: "Miami Heat", visita: "Orlando Magic" },
+      { id: 4, local: "Philadelphia 76ers", visita: "Milwaukee Bucks" },
+      { id: 5, local: "Golden State Warriors", visita: "Portland Trail Blazers" },
+      { id: 6, local: "Dallas Mavericks", visita: "San Antonio Spurs" },
+      { id: 7, local: "Denver Nuggets", visita: "OKC Thunder" },
+      { id: 8, local: "Phoenix Suns", visita: "LA Clippers" },
+      { id: 9, local: "Indiana Pacers", visita: "Cleveland Cavaliers" },
+      { id: 10, local: "Sacramento Kings", visita: "Memphis Grizzlies" }
+    ];
+
+    let seleccionActual = {};
+    let quinielasEnCarrito = [];
+
+    function renderPartidos() {
+      const contenedor = document.getElementById("listaPartidos");
+      contenedor.innerHTML = partidos.map(p => `
+        <div class="bg-[#12141c] border border-[#1e2230] rounded-2xl p-3 shadow-md hover:border-amber-500/40 transition">
+          <div class="flex justify-between items-center text-xs font-black text-slate-100 mb-2.5 px-2">
+            <span class="truncate w-5/12 text-left">${p.local}</span>
+            <span class="text-[10px] text-amber-400 font-black">VS</span>
+            <span class="truncate w-5/12 text-right">${p.visita}</span>
+          </div>
+          <div class="grid grid-cols-2 gap-2">
+            <button onclick="elegir(${p.id}, 'L')" id="btn-${p.id}-L" 
+                    class="btn-pick py-2 text-xs font-bold rounded-xl border border-[#1e2230] bg-[#0b0d13] text-slate-300 hover:border-slate-600 transition">
+              Local (L)
+            </button>
+            <button onclick="elegir(${p.id}, 'V')" id="btn-${p.id}-V" 
+                    class="btn-pick py-2 text-xs font-bold rounded-xl border border-[#1e2230] bg-[#0b0d13] text-slate-300 hover:border-slate-600 transition">
+              Visita (V)
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function elegir(partidoId, opcion) {
+      seleccionActual[partidoId] = opcion;
+      ['L', 'V'].forEach(opt => {
+        const btn = document.getElementById(`btn-${partidoId}-${opt}`);
+        btn.className = "btn-pick py-2 text-xs font-bold rounded-xl border border-[#1e2230] bg-[#0b0d13] text-slate-300 hover:border-slate-600 transition";
+      });
+      const btnActivo = document.getElementById(`btn-${partidoId}-${opcion}`);
+      btnActivo.classList.add(`active-${opcion.toLowerCase()}`);
+    }
+
+    function agregarQuiniela() {
+      const nombre = document.getElementById("nombreUsuario").value.trim();
+      if (!nombre) {
+        alert("Por favor escribe tu nombre completo.");
+        return;
+      }
+      if (Object.keys(seleccionActual).length < partidos.length) {
+        alert(`Debes pronosticar los ${partidos.length} partidos antes de registrar.`);
+        return;
+      }
+
+      quinielasEnCarrito.push({
+        nombre: nombre,
+        picks: { ...seleccionActual }
+      });
+
+      seleccionActual = {};
+      renderPartidos();
+      actualizarCarrito();
+    }
+
+    function actualizarCarrito() {
+      const seccion = document.getElementById("seccionCarrito");
+      const contenedor = document.getElementById("itemsCarrito");
+      const total = document.getElementById("totalPagar");
+      const contador = document.getElementById("contadorQuinielas");
+
+      if (quinielasEnCarrito.length === 0) {
+        seccion.classList.add("hidden");
+        return;
+      }
+
+      seccion.classList.remove("hidden");
+      contador.innerText = quinielasEnCarrito.length;
+      total.innerText = `$${quinielasEnCarrito.length * PRECIO_QUINIELA} MXN`;
+
+      contenedor.innerHTML = quinielasEnCarrito.map((q, idx) => `
+        <div class="flex justify-between items-center bg-[#0b0d13] px-3 py-2 rounded-xl border border-[#1e2230]">
+          <span class="font-bold text-slate-200">Q${idx + 1}: ${q.nombre}</span>
+          <button onclick="eliminarQuiniela(${idx})" class="text-rose-400 hover:text-rose-300 p-1">
+            <i class="fa-solid fa-trash-can"></i>
+          </button>
+        </div>
+      `).join('');
+    }
+
+    function eliminarQuiniela(index) {
+      quinielasEnCarrito.splice(index, 1);
+      actualizarCarrito();
+    }
+
+    function enviarWhatsApp() {
+      if (quinielasEnCarrito.length < 2) {
+        alert("Recuerda que la participación mínima son 2 quinielas ($50 MXN).");
+        return;
+      }
+
+      let mensaje = `*🏆 PEDIDO QUINIELAS LA TRIBUNA - NBA*%0A`;
+      mensaje += `*Total quinielas:* ${quinielasEnCarrito.length}%0A`;
+      mensaje += `*Importe total:* $${quinielasEnCarrito.length * PRECIO_QUINIELA} MXN%0A%0A`;
+
+      quinielasEnCarrito.forEach((q, idx) => {
+        mensaje += `*--- QUINIELA #${idx + 1} (${q.nombre}) ---*%0A`;
+        partidos.forEach(p => {
+          mensaje += `${p.id}. ${p.local} vs ${p.visita}: *[${q.picks[p.id]}]*%0A`;
+        });
+        mensaje += `%0A`;
+      });
+
+      mensaje += `Quedo a la espera de los datos de transferencia.`;
+
+      const url = `https://wa.me/${NUMERO_WHATSAPP}?text=${mensaje}`;
+      window.open(url, '_blank');
+    }
+
+    renderPartidos();
+  </script>
+</body>
+</html>
