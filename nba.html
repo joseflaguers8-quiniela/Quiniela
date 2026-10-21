@@ -44,6 +44,7 @@
       box-shadow: 0 0 16px rgba(16, 185, 129, 0.4);
     }
 
+    /* Botones de Selección Activos L - V */
     .btn-pick.active-l {
       background: linear-gradient(135deg, #10b981, #059669) !important;
       color: #ffffff !important;
@@ -59,6 +60,7 @@
       font-weight: 900;
     }
 
+    /* Título con Degradado Verde Esmeralda y Dorado */
     .brand-title {
       background: linear-gradient(135deg, #10b981 0%, #34d399 30%, #fbbf24 70%, #f59e0b 100%);
       -webkit-background-clip: text;
@@ -69,15 +71,18 @@
 </head>
 <body class="min-h-screen pb-28 font-sans antialiased">
 
+  <!-- Header Centrado con Logo y Título Refinados -->
   <header class="bg-[#0e1017] border-b border-[#232738] pt-3.5 pb-2.5 px-4 sticky top-0 z-40 shadow-2xl">
     <div class="max-w-md mx-auto flex flex-col items-center text-center">
       
+      <!-- Contenedor del Logo con Proporción Equilibrada -->
       <div class="w-20 h-20 rounded-full p-1 bg-gradient-to-tr from-amber-500 via-emerald-400 to-amber-300 shadow-xl flex items-center justify-center overflow-hidden bg-[#090a0f] mb-1.5">
         <img id="mainLogo" src="logo.jpg" alt="Quinielas La Tribuna" 
              class="w-full h-full object-cover rounded-full"
              onerror="intentarOtroLogo(this)">
       </div>
 
+      <!-- Título Oficial Verde con Dorado -->
       <h1 class="brand-title text-lg font-black tracking-wide uppercase leading-tight">
         LA TRIBUNA QUINIELAS
       </h1>
@@ -86,7 +91,7 @@
         <span class="text-[11px] font-black text-emerald-400 tracking-wider uppercase">🏀 QUINIELA NBA</span>
         <span class="text-slate-600 text-xs">•</span>
         <span class="text-[10px] bg-amber-500/10 text-amber-300 border border-amber-500/30 px-2 py-0.2 rounded-full font-bold">
-          JORNADA 1
+          VIERNES 23 OCT
         </span>
       </div>
 
@@ -95,6 +100,7 @@
 
   <main class="max-w-md mx-auto px-4 mt-4">
 
+    <!-- Selector de Deporte -->
     <div class="grid grid-cols-3 gap-2 mb-4">
       <a href="index.html" class="text-center py-2.5 px-2 rounded-xl text-xs font-bold bg-[#12141c] text-slate-300 border border-[#1e2230] hover:border-amber-400/40 flex items-center justify-center gap-1.5 transition">
         <span>⚽</span> Fútbol
@@ -120,6 +126,7 @@
       </div>
     </div>
 
+    <!-- Nombre del Participante -->
     <div class="card-partido p-4 mb-4">
       <label class="block text-[11px] font-black uppercase tracking-wider text-amber-400 mb-1.5">
         <i class="fa-solid fa-user text-xs mr-1"></i> Nombre del Participante
@@ -128,13 +135,16 @@
              class="w-full bg-[#0b0d13] border border-[#232738] rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400 transition">
     </div>
 
+    <!-- Lista de Partidos NBA -->
     <div id="listaPartidos" class="space-y-3.5"></div>
 
+    <!-- Botón Agregar Quiniela -->
     <button onclick="agregarQuiniela()" 
             class="w-full mt-4 bg-gradient-to-r from-amber-500 via-amber-400 to-amber-500 hover:brightness-110 text-slate-950 font-black py-3.5 rounded-xl transition flex items-center justify-center gap-2 text-sm uppercase tracking-wider shadow-lg shadow-amber-500/20 active:scale-[0.99]">
       <i class="fa-solid fa-plus-circle text-base"></i> Registrar Quiniela
     </button>
 
+    <!-- Resumen y Carrito -->
     <div id="seccionCarrito" class="mt-6 card-partido p-4 hidden">
       <div class="flex items-center justify-between mb-3 border-b border-[#232738] pb-2.5">
         <h3 class="text-xs font-black uppercase text-amber-400 tracking-wider flex items-center gap-2">
@@ -160,7 +170,7 @@
 
   <script>
     const NUMERO_WHATSAPP = "52XXXXXXXXXX"; // Reemplaza con tus 10 dígitos
-    const PRECIO_QUINIELA = 15; // Ahora $15 MXN
+    const PRECIO_QUINIELA = 15;
 
     let intentos = 0;
     const formatosLogo = ["logo.jpg", "logo.png", "logo.jpeg", "logo.jpg.jpg"];
@@ -171,17 +181,18 @@
       }
     }
 
+    // 10 PARTIDOS OFICIALES: VIERNES 23 DE OCTUBRE NBA
     const partidos = [
-      { id: 1, local: "Celtics", logoLocal: "https://a.espncdn.com/i/teamlogos/nba/500/bos.png", visita: "Knicks", logoVisita: "https://a.espncdn.com/i/teamlogos/nba/500/ny.png" },
-      { id: 2, local: "Lakers", logoLocal: "https://a.espncdn.com/i/teamlogos/nba/500/lal.png", visita: "Timberwolves", logoVisita: "https://a.espncdn.com/i/teamlogos/nba/500/min.png" },
-      { id: 3, local: "Heat", logoLocal: "https://a.espncdn.com/i/teamlogos/nba/500/mia.png", visita: "Magic", logoVisita: "https://a.espncdn.com/i/teamlogos/nba/500/orl.png" },
-      { id: 4, local: "76ers", logoLocal: "https://a.espncdn.com/i/teamlogos/nba/500/phi.png", visita: "Bucks", logoVisita: "https://a.espncdn.com/i/teamlogos/nba/500/mil.png" },
-      { id: 5, local: "Warriors", logoLocal: "https://a.espncdn.com/i/teamlogos/nba/500/gs.png", visita: "Trail Blazers", logoVisita: "https://a.espncdn.com/i/teamlogos/nba/500/por.png" },
-      { id: 6, local: "Mavericks", logoLocal: "https://a.espncdn.com/i/teamlogos/nba/500/dal.png", visita: "Spurs", logoVisita: "https://a.espncdn.com/i/teamlogos/nba/500/sa.png" },
-      { id: 7, local: "Nuggets", logoLocal: "https://a.espncdn.com/i/teamlogos/nba/500/den.png", visita: "Thunder", logoVisita: "https://a.espncdn.com/i/teamlogos/nba/500/okc.png" },
-      { id: 8, local: "Suns", logoLocal: "https://a.espncdn.com/i/teamlogos/nba/500/phx.png", visita: "Clippers", logoVisita: "https://a.espncdn.com/i/teamlogos/nba/500/lac.png" },
-      { id: 9, local: "Pacers", logoLocal: "https://a.espncdn.com/i/teamlogos/nba/500/ind.png", visita: "Cavaliers", logoVisita: "https://a.espncdn.com/i/teamlogos/nba/500/cle.png" },
-      { id: 10, local: "Kings", logoLocal: "https://a.espncdn.com/i/teamlogos/nba/500/sac.png", visita: "Grizzlies", logoVisita: "https://a.espncdn.com/i/teamlogos/nba/500/mem.png" }
+      { id: 1, local: "Celtics", logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/GDJBo7eEF8EO5-kDHVpdqw_500x500.png", visita: "Knicks", logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/-rf7eY39l_0V7J4ekakuKA_500x500.png" },
+      { id: 2, local: "Lakers", logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/4ndR-n-gall7_h3f7NYcpQ_500x500.png", visita: "Clippers", logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/Qfmcz6S86sLz19CP8Hv0Gw_500x500.png" },
+      { id: 3, local: "Warriors", logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/ovwlyYHRKZ90s7zn_qlMCg_500x500.png", visita: "Grizzlies", logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/cPBaon0tDBPu6Wqu-JkGzQ_500x500.png" },
+      { id: 4, local: "Bucks", logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/Wd6xIEIXpfqg9EZC6PAepQ_500x500.png", visita: "Bulls", logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/ofjScRGiytT__Flak2j4dg_500x500.png" },
+      { id: 5, local: "Heat", logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/0nQXN6OF7wnLY3hJz8lZJQ_500x500.png", visita: "Pistons", logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/qvWE2FgBX0MCqFfciFBDiw_500x500.png" },
+      { id: 6, local: "Pacers", logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/I3MuFlxv71r8Hgws3Qf_oA_500x500.png", visita: "Mavericks", logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/xxxlj9RpmAKJ9P9phstWCQ_500x500.png" },
+      { id: 7, local: "Magic", logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/YaftZcw8oWwRh6CLYoq2Vw_500x500.png", visita: "Timberwolves", logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/VrK5wJLK8o-QV1Cs-1WO6A_500x500.png" },
+      { id: 8, local: "Spurs", logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/FKwMB_85FlZ_7PTt1f7hjQ_500x500.png", visita: "Rockets", logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/LGQbRZSX8NrJBfGrnlzE6Q_500x500.png" },
+      { id: 9, local: "Kings", logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/wkCDHakxEThLGoZ4Ven48Q_500x500.png", visita: "Trail Blazers", logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/_bgagBCd6ieOIt3INWRN_w_500x500.png" },
+      { id: 10, local: "Jazz", logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/8-M9TwRyXGqWqhI2UHZFWg_500x500.png", visita: "Pelicans", logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/JCQO978-AWbg00TQUNPUVg_500x500.png" }
     ];
 
     let seleccionActual = {};
@@ -292,6 +303,7 @@
       }
 
       let mensaje = `*🏆 PEDIDO QUINIELAS LA TRIBUNA - NBA*%0A`;
+      mensaje += `*Jornada:* VIERNES 23 OCT%0A`;
       mensaje += `*Total quinielas:* ${quinielasEnCarrito.length}%0A`;
       mensaje += `*Importe total:* $${quinielasEnCarrito.length * PRECIO_QUINIELA} MXN%0A%0A`;
 
