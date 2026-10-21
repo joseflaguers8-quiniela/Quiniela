@@ -98,7 +98,7 @@
         <span class="text-[11px] font-black text-emerald-400 tracking-wider uppercase">⚽ QUINIELA FÚTBOL</span>
         <span class="text-slate-600 text-xs">•</span>
         <span class="text-[10px] bg-amber-500/10 text-amber-300 border border-amber-500/30 px-2 py-0.2 rounded-full font-bold">
-          JORNADA 1
+          JORNADA 14
         </span>
       </div>
 
@@ -142,7 +142,7 @@
              class="w-full bg-[#0b0d13] border border-[#232738] rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400 transition">
     </div>
 
-    <!-- Lista de 11 Partidos -->
+    <!-- Lista de 11 Partidos Oficiales -->
     <div id="listaPartidos" class="space-y-3.5"></div>
 
     <!-- Panel de Costo Dinámico de la Quiniela Actual (Dobles / Triples) -->
@@ -189,7 +189,7 @@
 
   <script>
     const NUMERO_WHATSAPP = "52XXXXXXXXXX"; // Reemplaza con tus 10 dígitos
-    const PRECIO_BASE = 15; // Ahora $15 MXN
+    const PRECIO_BASE = 15;
 
     let intentos = 0;
     const formatosLogo = ["logo.jpg", "logo.png", "logo.jpeg", "logo.jpg.jpg"];
@@ -200,18 +200,85 @@
       }
     }
 
+    // 11 PARTIDOS OFICIALES: JORNADA 14 LIGA MX + EL CLÁSICO + PREMIER LEAGUE
     const partidos = [
-      { id: 1, local: "América", logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/QKZVogU66ByvZRqIAIVtmA_500x500.png", visita: "Guadalajara", logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/9le8bJW_PjNZYbuV3CO2Pg_500x500.png" },
-      { id: 2, local: "Cruz Azul", logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/hwsmDtw_ETdVCS410dye3Q_500x500.png", visita: "Pumas UNAM", logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/EfPJSBOmHePNwgl6_FOuHA_500x500.png" },
-      { id: 3, local: "Tigres", logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/SUJAIkxhbnmFXDpJY2gSww_500x500.png", visita: "Monterrey", logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/LXZ8fEgzf0_FwSyq15buPw_500x500.png" },
-      { id: 4, local: "Toluca", logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/ycTgfmECsg0S-aVXCOPXcA_500x500.png", visita: "Pachuca", logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/9dscoX8iYhzbjSNxXVp2gQ_500x500.png" },
-      { id: 5, local: "Santos", logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/A7Np6PvBdRqYbaHYcVecyg_500x500.png", visita: "Atlas", logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/pl3U9pi7AYOBuIDiyl7vTg_500x500.png" },
-      { id: 6, local: "León", logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/IR3AyUUEoSWoeTmicHAlKA_500x500.png", visita: "Necaxa", logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/pJ1MKX3vzO7svp-0f984tA_500x500.png" },
-      { id: 7, local: "Puebla", logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/Xm6-xCbLZ-kNoxWQTen7-Q_500x500.png", visita: "FC Juárez", logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/85-dl3QydggPuQl-kc2mtA_500x500.png" },
-      { id: 8, local: "Tijuana", logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/LH2XadWT8Nk19o6SnbL4JA_500x500.png", visita: "Querétaro", logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/_dJ5qYYoDVTQOvru2Psrlw_500x500.png" },
-      { id: 9, local: "San Luis", logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/ToSdfqXiatX8HuqqVcYgtA_500x500.png", visita: "Mazatlán", logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/t5LOnqxMCk-QEs20xw8wvw_500x500.png" },
-      { id: 10, local: "Real Madrid", logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/Th4fAVAZeCJWRcKoLW7koA_500x500.png", visita: "Barcelona", logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/paYnEE8hcrP96neHRNofhQ_500x500.png" },
-      { id: 11, local: "Liverpool", logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/nGfV05dipbAc7zzojivKew_500x500.png", visita: "Man. City", logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/z44l-a0W1v5FmgPnemV6Xw_500x500.png" }
+      {
+        id: 1,
+        local: "Santos",
+        logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/A7Np6PvBdRqYbaHYcVecyg_500x500.png",
+        visita: "Mazatlán",
+        logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/t5LOnqxMCk-QEs20xw8wvw_500x500.png"
+      },
+      {
+        id: 2,
+        local: "Puebla",
+        logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/Xm6-xCbLZ-kNoxWQTen7-Q_500x500.png",
+        visita: "Chivas",
+        logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/9le8bJW_PjNZYbuV3CO2Pg_500x500.png"
+      },
+      {
+        id: 3,
+        local: "León",
+        logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/IR3AyUUEoSWoeTmicHAlKA_500x500.png",
+        visita: "Querétaro",
+        logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/_dJ5qYYoDVTQOvru2Psrlw_500x500.png"
+      },
+      {
+        id: 4,
+        local: "Pumas UNAM",
+        logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/EfPJSBOmHePNwgl6_FOuHA_500x500.png",
+        visita: "Cruz Azul",
+        logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/hwsmDtw_ETdVCS410dye3Q_500x500.png"
+      },
+      {
+        id: 5,
+        local: "Tigres",
+        logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/SUJAIkxhbnmFXDpJY2gSww_500x500.png",
+        visita: "Pachuca",
+        logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/9dscoX8iYhzbjSNxXVp2gQ_500x500.png"
+      },
+      {
+        id: 6,
+        local: "Atlas",
+        logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/pl3U9pi7AYOBuIDiyl7vTg_500x500.png",
+        visita: "Tijuana",
+        logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/LH2XadWT8Nk19o6SnbL4JA_500x500.png"
+      },
+      {
+        id: 7,
+        local: "Necaxa",
+        logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/pJ1MKX3vzO7svp-0f984tA_500x500.png",
+        visita: "Toluca",
+        logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/ycTgfmECsg0S-aVXCOPXcA_500x500.png"
+      },
+      {
+        id: 8,
+        local: "FC Juárez",
+        logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/85-dl3QydggPuQl-kc2mtA_500x500.png",
+        visita: "San Luis",
+        logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/ToSdfqXiatX8HuqqVcYgtA_500x500.png"
+      },
+      {
+        id: 9,
+        local: "América",
+        logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/QKZVogU66ByvZRqIAIVtmA_500x500.png",
+        visita: "Monterrey",
+        logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/LXZ8fEgzf0_FwSyq15buPw_500x500.png"
+      },
+      {
+        id: 10,
+        local: "Real Madrid",
+        logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/Th4fAVAZeCJWRcKoLW7koA_500x500.png",
+        visita: "Barcelona",
+        logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/paYnEE8hcrP96neHRNofhQ_500x500.png"
+      },
+      {
+        id: 11,
+        local: "Liverpool",
+        logoLocal: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/nGfV05dipbAc7zzojivKew_500x500.png",
+        visita: "Brighton",
+        logoVisita: "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/EKIe0e-ZIphOcfQAwsuEEQ_500x500.png"
+      }
     ];
 
     let seleccionActual = {};
@@ -388,6 +455,7 @@
       }
 
       let mensaje = `*🏆 PEDIDO QUINIELAS LA TRIBUNA - FÚTBOL*%0A`;
+      mensaje += `*Jornada:* JORNADA 14%0A`;
       mensaje += `*Total quinielas:* ${quinielasEnCarrito.length}%0A`;
       mensaje += `*Importe total:* $${sumaTotal} MXN%0A%0A`;
 
